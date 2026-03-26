@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanre Folarin | Product Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0D1829;
+      --surface:    #152238;
+      --accent:     #E8A838;
+      --amber:      #C4622D;
+      --text:       #F2EDE6;
+      --muted:      #7E99B8;
+      --border:     #1E3254;
+      --serif:      'Fraunces', Georgia, serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+      --nav-h:      64px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      /* subtle warm grain */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(13, 24, 41, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+    }
+
+    .nav-cta:hover { background: #a84f24; color: #fff !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      transition: all 0.3s;
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 100px 5%; }
+    .container { max-width: 1080px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.15; }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      padding: 80px 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .hero-photo-col {}
+
+    .hero-photo-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 600;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.3em;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-role {
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 3px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-family: var(--sans);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: #c98a20; transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .about-highlights {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .highlight {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .highlight-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .highlight-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { }
+
+    .exp-header {
+      margin-bottom: 4rem;
+    }
+
+    .exp-header p {
+      color: var(--muted);
+      max-width: 480px;
+      margin-top: 0.5rem;
+    }
+
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 180px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 0 3rem;
+      padding-bottom: 3rem;
+      position: relative;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-date {
+      text-align: right;
+      padding-top: 0.1rem;
+    }
+
+    .timeline-date span {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 176px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .timeline-content {
+      padding-left: 0;
+    }
+
+    .timeline-role {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-company {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.73rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: 2px;
+      background: var(--surface);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      letter-spacing: 0.02em;
+    }
+
+    /* ─── CERTIFICATIONS ─── */
+    #certifications { background: var(--surface); }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .cert-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(232, 168, 56, 0.12);
+    }
+
+    .cert-card.featured::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--accent);
+    }
+
+    .cert-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(232, 168, 56, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.2rem;
+    }
+
+    .cert-name {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .cert-issuer {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-year {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects {}
+
+    .projects-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .projects-header p {
+      color: var(--muted);
+      max-width: 480px;
+      margin-top: 0.5rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(28, 25, 23, 0.08);
+    }
+
+    .project-thumb {
+      height: 160px;
+      background: var(--border);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .project-thumb-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .project-thumb-1 { background: linear-gradient(135deg, #F2EDE6 0%, #E8D8C8 100%); }
+    .project-thumb-2 { background: linear-gradient(135deg, #F0EDE8 0%, #DDD0C0 100%); }
+    .project-thumb-3 { background: linear-gradient(135deg, #EDE8E2 0%, #D8C8B8 100%); }
+
+    .project-num {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(196, 98, 45, 0.15);
+      line-height: 1;
+    }
+
+    .project-body {
+      padding: 1.6rem;
+    }
+
+    .project-type {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .case-study {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .case-row {
+      display: flex;
+      gap: 0.7rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .case-label {
+      font-weight: 600;
+      color: var(--text);
+      min-width: 68px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-top: 0.05em;
+    }
+
+    .case-text { color: var(--muted); }
+
+    .project-link {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .project-link:hover { border-color: var(--accent); }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--surface); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem 3rem;
+      margin-top: 3rem;
+    }
+
+    .skill-group {}
+
+    .skill-group-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      font-size: 0.83rem;
+      font-weight: 400;
+      padding: 0.4rem 0.85rem;
+      border-radius: 100px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(232, 168, 56, 0.08);
+    }
+
+    /* ─── WRITING ─── */
+    #writing {}
+
+    .writing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .writing-header-text p {
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .writing-link-all {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .writing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .article-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .article-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(28, 25, 23, 0.06);
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .article-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .article-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .article-excerpt {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .article-cta {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: auto;
+    }
+
+    .article-cta:hover { text-decoration: underline; }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--surface); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info {}
+
+    .contact-info h2 { margin-bottom: 1rem; }
+
+    .contact-info p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(232, 168, 56, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+    }
+
+    .contact-detail a {
+      font-size: 0.88rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-detail a:hover { color: var(--accent); }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    input, textarea {
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      color: var(--text);
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+    }
+
+    textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2.5rem 5%;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .footer-right {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ─── STATS TAB ─── */
+    .stats-tab {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 90;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-right: none;
+      border-radius: 8px 0 0 8px;
+      padding: 1.4rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .stats-tab-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.8rem 0.2rem;
+    }
+
+    .stats-tab-num {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stats-tab-label {
+      font-size: 0.62rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-align: center;
+      max-width: 60px;
+      line-height: 1.3;
+    }
+
+    .stats-tab-divider {
+      width: 24px;
+      height: 1px;
+      background: var(--border);
+      margin: 0.1rem 0;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-photo-wrap { max-width: 260px; aspect-ratio: 1/1; }
+      .stats-tab { display: none; }
+
+      .timeline::before { left: 0; }
+      .timeline-item { grid-template-columns: 1fr; padding-left: 1.5rem; }
+      .timeline-date { text-align: left; margin-bottom: 0.3rem; }
+      .timeline-dot { left: -4px; }
+
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .writing-grid { grid-template-columns: 1fr; }
+      .writing-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 70px 5%; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem 5%;
+        gap: 1.2rem;
+      }
+
+      .hero-name { font-size: clamp(2.5rem, 12vw, 4rem); }
+      .about-highlights { flex-wrap: wrap; gap: 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">Lanre Folarin</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Stats Tab (fixed right side) -->
+  <div class="stats-tab">
+    <div class="stats-tab-item">
+      <span class="stats-tab-num">10+</span>
+      <span class="stats-tab-label">Years in BA</span>
+    </div>
+    <div class="stats-tab-divider"></div>
+    <div class="stats-tab-item">
+      <span class="stats-tab-num">2×</span>
+      <span class="stats-tab-label">Certified</span>
+    </div>
+    <div class="stats-tab-divider"></div>
+    <div class="stats-tab-item">
+      <span class="stats-tab-num">6+</span>
+      <span class="stats-tab-label">Industries</span>
+    </div>
+    <div class="stats-tab-divider"></div>
+    <div class="stats-tab-item">
+      <span class="stats-tab-num">5</span>
+      <span class="stats-tab-label">Articles</span>
+    </div>
+  </div>
+
+  <!-- HERO + ABOUT -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-photo-col">
+        <div class="hero-photo-wrap">
+          <img src="lanre-folarin.jpg" alt="Lanre Folarin">
+        </div>
+      </div>
+      <div class="hero-left">
+        <div class="hero-tag">Open to new opportunities</div>
+        <h1 class="hero-name">Lanre<br><em>Folarin</em></h1>
+        <p class="hero-role">Product Manager &nbsp;·&nbsp; Business Analyst</p>
+        <p class="hero-desc">
+          I turn messy operational problems into scalable, data-backed products that drive measurable business outcomes.
+          With <strong>10+ years in business analysis and digital transformation</strong>, I've shipped solutions
+          that cut reconciliation costs by millions, improved on-time delivery by 15%, and eliminated entire
+          categories of manual rework — across government, telecom, and logistics.
+        </p>
+        <p class="hero-desc">
+          <strong>CBAP-certified</strong> and <strong>Product School–certified PM</strong>.
+          Now bringing that depth of operational experience into product roles where strategy, data,
+          and user outcomes need to work together.
+        </p>
+        <div class="about-highlights" style="margin-bottom: 2rem;">
+          <div class="highlight">
+            <span class="highlight-num">10+</span>
+            <span class="highlight-text">Years experience</span>
+          </div>
+          <div class="highlight">
+            <span class="highlight-num">6+</span>
+            <span class="highlight-text">Industries served</span>
+          </div>
+          <div class="highlight">
+            <span class="highlight-num">2</span>
+            <span class="highlight-text">Certifications</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="Lanre_Folarin_Resume.pdf" download class="btn btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Resume
+          </a>
+          <a href="#contact" class="btn btn-ghost">Get in Touch →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="exp-header reveal">
+        <p class="section-label">Work Experience</p>
+        <h2>Where I've made an impact.</h2>
+        <p>A track record of turning complexity into clarity — across industries.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-date"><span>Dec 2025 – Present</span></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-role">Senior Business Analyst</div>
+            <div class="timeline-company">Ministry of Health, Ontario Public Service · Toronto, ON</div>
+            <p class="timeline-desc">
+              Own end-to-end requirements for Transfer Payment forecasting workflows, translating complex program and finance rules into 40+ prioritized epics, user stories, and acceptance criteria for a 6-person dev team. Designed a Power BI reporting suite tracking SLA compliance, aging, and cycle time — reducing manual status reporting by ~3 hours/week. Facilitated discovery workshops with 10+ cross-functional stakeholders to eliminate 3 manual handoff steps and increase throughput.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Stakeholder Management</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">Forecasting</span>
+              <span class="tag">ERP / TPON</span>
+              <span class="tag">UAT</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date"><span>May – Nov 2025</span></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-role">Business Architect (Senior BA Engagement)</div>
+            <div class="timeline-company">Schneider Electric · Contract · Milton, ON</div>
+            <p class="timeline-desc">
+              Led cross-functional discovery across 6 business units to produce process maps and a prioritized requirements backlog — accelerating solution design by 3 weeks. Designed a KPI framework and benefits-tracking model to demonstrate ROI to executive sponsors. Led change impact assessments across 4 business units, preparing 200+ users for adoption and maintaining governance reporting for a 15+ stakeholder program.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Business Architecture</span>
+              <span class="tag">Process Mapping</span>
+              <span class="tag">Change Management</span>
+              <span class="tag">KPI Frameworks</span>
+              <span class="tag">RAID Log</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date"><span>Nov 2022 – Dec 2024</span></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-role">Senior Business Systems Analyst</div>
+            <div class="timeline-company">Combined Metal Industries · Vaughan, ON</div>
+            <p class="timeline-desc">
+              Led discovery with Finance, Engineering, and Operations to define requirements for an asset recovery and contractor billing platform — translating a $2M+ reconciliation challenge into a traceable requirements baseline. Delivered Power BI reporting improvements that reduced manual reconciliation effort by 40%. Established a structured UAT process that cut post-release production issues by 35%.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Requirements</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">UAT</span>
+              <span class="tag">RTM</span>
+              <span class="tag">Stakeholder Mgmt</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date"><span>Jan 2021 – Oct 2022</span></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-role">ERP Business Analyst</div>
+            <div class="timeline-company">Combined Metal Industries · Vaughan, ON</div>
+            <p class="timeline-desc">
+              Produced BRDs and RTMs for 5 ERP workflow and BI dashboard enhancements, reducing mid-sprint rework by 30%. Built Power BI dashboards for logistics KPIs that contributed to $150K+ in annualised cost savings. Drove Agile delivery in Azure DevOps, achieving a 90%+ sprint completion rate across 12 consecutive sprints with an 8-person squad.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">ERP</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">Azure DevOps</span>
+              <span class="tag">Agile</span>
+              <span class="tag">BRD / RTM</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date"><span>Apr 2019 – Dec 2020</span></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-role">Business Analyst II</div>
+            <div class="timeline-company">DB Schenker · Contract · Milton, ON</div>
+            <p class="timeline-desc">
+              Owned UAT strategy for 24 Power BI dashboards delivered to Finance, IT, and Operations — achieving zero critical defects at go-live across all releases. Managed the BI and analytics product backlog and performed SQL data profiling across 5M+ records. Championed order fulfilment process improvements that contributed to a 15% improvement in on-time shipment performance.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">SQL</span>
+              <span class="tag">UAT</span>
+              <span class="tag">Backlog Management</span>
+              <span class="tag">Analytics</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date"><span>Sep 2017 – Mar 2019</span></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-role">Business Analyst</div>
+            <div class="timeline-company">Mother Parkers Tea &amp; Coffee · Mississauga, ON</div>
+            <p class="timeline-desc">
+              Delivered internal automation tools that reduced order entry errors by 30% and improved demand forecasting accuracy across 3 departments. Facilitated pain-point workshops converting findings into a phased backlog that shipped 4 releases on schedule. Coordinated UAT and deployment for 6 system enhancements with full user adoption within 30 days of each release.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">CRM</span>
+              <span class="tag">Requirements Gathering</span>
+              <span class="tag">Demand Forecasting</span>
+              <span class="tag">UAT</span>
+              <span class="tag">Process Automation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="container">
+      <p class="section-label">Credentials</p>
+      <h2>Certifications &amp; Education</h2>
+      <div class="cert-grid">
+        <div class="cert-card featured reveal">
+          <div class="cert-badge">🏅</div>
+          <div class="cert-name">Product Management Certification</div>
+          <div class="cert-issuer">Product School</div>
+          <div class="cert-year">Issued 2023</div>
+        </div>
+        <div class="cert-card featured reveal">
+          <div class="cert-badge">📊</div>
+          <div class="cert-name">Certified Business Analysis Professional (CBAP)</div>
+          <div class="cert-issuer">IIBA — International Institute of Business Analysis</div>
+          <div class="cert-year">Issued 2022</div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-badge">🎓</div>
+          <div class="cert-name">Bachelor of Business Administration</div>
+          <div class="cert-issuer">Human Resource Management · Sheridan College</div>
+          <div class="cert-year">Graduated 2019</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="projects-header reveal">
+        <p class="section-label">Selected Work</p>
+        <h2>Projects &amp; Case Studies</h2>
+        <p>Real problems, structured thinking, measurable outcomes.</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <div class="project-thumb project-thumb-1">
+            <span class="project-thumb-label">Government · Current</span>
+            <span class="project-num">01</span>
+          </div>
+          <div class="project-body">
+            <div class="project-type">Process &amp; Reporting · Ontario Ministry of Health</div>
+            <div class="project-title">Transfer Payment Funding Package (TPFP)</div>
+            <div class="case-study">
+              <div class="case-row">
+                <span class="case-label">User Need</span>
+                <span class="case-text">Program staff across Finance and Operations had no single source of truth — they were making funding allocation decisions on stale spreadsheets and hoping nothing had changed.</span>
+              </div>
+              <div class="case-row">
+                <span class="case-label">Decision</span>
+                <span class="case-text">Prioritized visibility before automation. Built the reporting layer first so leadership could trust the data before we changed any behavior. Sequenced 40+ epics by user dependency, not technical convenience.</span>
+              </div>
+              <div class="case-row">
+                <span class="case-label">Impact</span>
+                <span class="case-text">Eliminated 3 manual handoff steps. Teams stopped asking "where are we?" and started asking "what's next?" — the shift from reactive to planned delivery was visible within the first sprint cycle.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-thumb project-thumb-2">
+            <span class="project-thumb-label">Government · Current</span>
+            <span class="project-num">02</span>
+          </div>
+          <div class="project-body">
+            <div class="project-type">Financial Planning · Ontario Ministry of Health</div>
+            <div class="project-title">Planning, Budgeting &amp; Forecasting Transformation</div>
+            <div class="case-study">
+              <div class="case-row">
+                <span class="case-label">User Need</span>
+                <span class="case-text">Finance teams were making multi-million dollar planning decisions on data they didn't fully trust. Errors in ERP datasets were silently propagating into forecasts — and nobody could pinpoint where.</span>
+              </div>
+              <div class="case-row">
+                <span class="case-label">Decision</span>
+                <span class="case-text">Fixed the problem at the source, not the symptom. Defined validation rules at data entry rather than building error-correction layers downstream — a harder short-term lift, but a fraction of the ongoing cost.</span>
+              </div>
+              <div class="case-row">
+                <span class="case-label">Impact</span>
+                <span class="case-text">Data errors dropped ~25% within 60 days. The real win: forecast reports went from "we'll double-check that" to trusted artifacts that leadership acted on without hesitation.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-thumb project-thumb-3">
+            <span class="project-thumb-label">Telecom · Previous</span>
+            <span class="project-num">03</span>
+          </div>
+          <div class="project-body">
+            <div class="project-type">Cost Optimization · Bell &amp; Telus</div>
+            <div class="project-title">Copper Decommissioning Program</div>
+            <div class="case-study">
+              <div class="case-row">
+                <span class="case-label">User Need</span>
+                <span class="case-text">Finance teams couldn't dispute contractor invoices or verify material recovery — $2M+ was being reconciled on trust and approximation, with no audit trail if something went wrong.</span>
+              </div>
+              <div class="case-row">
+                <span class="case-label">Decision</span>
+                <span class="case-text">Held the line on traceability over speed. Delayed releases twice to enforce full RTM sign-off — because shipping broken financial data would've cost more to fix than to prevent. Not everyone agreed, but the outcome proved the call.</span>
+              </div>
+              <div class="case-row">
+                <span class="case-label">Impact</span>
+                <span class="case-text">Zero-defect releases across both major delivery cycles. Reconciliation effort dropped 40%. Finance teams could now challenge contractor claims with data — for the first time in the program's history.</span>
+              </div>
+            </div>
+            <a href="https://furthermaf.substack.com/p/how-i-helped-two-major-telcos-streamline" target="_blank" rel="noopener" class="project-link">Read the writeup ↗</a>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-thumb project-thumb-1">
+            <span class="project-thumb-label">Logistics · Previous</span>
+            <span class="project-num">04</span>
+          </div>
+          <div class="project-body">
+            <div class="project-type">Analytics Product · DB Schenker</div>
+            <div class="project-title">BI Analytics Platform &amp; CRM Implementation</div>
+            <div class="case-study">
+              <div class="case-row">
+                <span class="case-label">User Need</span>
+                <span class="case-text">Operations and Finance teams were making fulfilment decisions on gut feel. Dashboards existed — but the data was unreliable enough that no one fully trusted what they showed.</span>
+              </div>
+              <div class="case-row">
+                <span class="case-label">Decision</span>
+                <span class="case-text">Enforced a zero critical defects policy and delayed go-live twice rather than ship bad data to executives. Profiled 5M+ records and applied an 80/20 prioritization — fixing the 20% of data fields driving 80% of decisions first.</span>
+              </div>
+              <div class="case-row">
+                <span class="case-label">Impact</span>
+                <span class="case-text">All 24 dashboards launched clean. On-time shipment performance improved 15% in two quarters — not because the data changed, but because teams finally trusted it enough to act on it.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-thumb project-thumb-2">
+            <span class="project-thumb-label">FMCG · Previous</span>
+            <span class="project-num">05</span>
+          </div>
+          <div class="project-body">
+            <div class="project-type">Process Automation · Mother Parker's Tea &amp; Coffee</div>
+            <div class="project-title">CRM &amp; Order Automation Initiative</div>
+            <div class="case-study">
+              <div class="case-row">
+                <span class="case-label">User Need</span>
+                <span class="case-text">Order errors were creating downstream chaos across 3 departments — but no single team owned the problem. Everyone felt the pain; nobody had the mandate to fix it.</span>
+              </div>
+              <div class="case-row">
+                <span class="case-label">Decision</span>
+                <span class="case-text">Ran pain-point workshops before touching scope. Refused to define requirements until the root cause was understood. Chose phased delivery over big-bang launch specifically to manage adoption risk — 50+ users is a culture change, not just a software change.</span>
+              </div>
+              <div class="case-row">
+                <span class="case-label">Impact</span>
+                <span class="case-text">Order errors down 30%. All 4 releases shipped on schedule. Full adoption within 30 days of each go-live — because the people using the system helped shape what got built.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">Capabilities</p>
+      <h2>Skills &amp; Tools</h2>
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Product Management</div>
+          <div class="skill-pills">
+            <span class="pill">Product Strategy & Roadmapping</span>
+            <span class="pill">User Story Creation</span>
+            <span class="pill">Backlog Management</span>
+            <span class="pill">Stakeholder Management</span>
+            <span class="pill">Cross-Functional Leadership</span>
+            <span class="pill">Agile & Scrum</span>
+            <span class="pill">Product Lifecycle Management</span>
+            <span class="pill">Customer-Centric Thinking</span>
+            <span class="pill">MoSCoW & RICE</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Business Analysis</div>
+          <div class="skill-pills">
+            <span class="pill">Requirements Gathering</span>
+            <span class="pill">Business Process Modeling</span>
+            <span class="pill">Functional Documentation</span>
+            <span class="pill">Gap Analysis</span>
+            <span class="pill">Use Case Development</span>
+            <span class="pill">BPMN</span>
+            <span class="pill">RTM & Traceability</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Data & Financial Analysis</div>
+          <div class="skill-pills">
+            <span class="pill">Financial Planning & Forecasting</span>
+            <span class="pill">Cost Tracking & Analysis</span>
+            <span class="pill">Data Interpretation</span>
+            <span class="pill">KPI Definition & Monitoring</span>
+            <span class="pill">Power BI</span>
+            <span class="pill">SQL</span>
+            <span class="pill">Reporting</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Process Improvement</div>
+          <div class="skill-pills">
+            <span class="pill">Process Mapping & Optimization</span>
+            <span class="pill">Workflow Analysis</span>
+            <span class="pill">Continuous Improvement</span>
+            <span class="pill">Operational Efficiency</span>
+            <span class="pill">Change Management</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Collaboration & Communication</div>
+          <div class="skill-pills">
+            <span class="pill">Stakeholder Workshops</span>
+            <span class="pill">Executive Communication</span>
+            <span class="pill">Cross-Functional Collaboration</span>
+            <span class="pill">Conflict Resolution</span>
+            <span class="pill">UAT Coordination</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">Tools</div>
+          <div class="skill-pills">
+            <span class="pill">Jira</span>
+            <span class="pill">Confluence</span>
+            <span class="pill">Microsoft Excel</span>
+            <span class="pill">PowerPoint</span>
+            <span class="pill">Visio / Lucidchart</span>
+            <span class="pill">Azure DevOps</span>
+            <span class="pill">Miro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section id="writing">
+    <div class="container">
+      <div class="writing-header reveal">
+        <div class="writing-header-text">
+          <p class="section-label">On Substack</p>
+          <h2>Things I think about.</h2>
+          <p>Product strategy, data, and the human side of building.</p>
+        </div>
+        <a href="https://furthermaf.substack.com/" target="_blank" rel="noopener" class="writing-link-all">Read all posts ↗</a>
+      </div>
+      <div class="writing-grid">
+        <div class="article-card reveal">
+          <div class="article-meta">
+            <span>Mindset</span>
+            <span class="article-dot"></span>
+          </div>
+          <div class="article-title">You Should Do Something Really, Really Hard This Year</div>
+          <p class="article-excerpt">
+            Not "busy" hard. Not "my calendar is full" hard. Uncomfortable, ego-checking,
+            why-did-I-sign-up-for-this hard. On the value of choosing difficulty with intention.
+          </p>
+          <a href="https://furthermaf.substack.com/p/you-should-do-something-really-really" target="_blank" rel="noopener" class="article-cta">Read on Substack ↗</a>
+        </div>
+        <div class="article-card reveal">
+          <div class="article-meta">
+            <span>Case Study</span>
+            <span class="article-dot"></span>
+          </div>
+          <div class="article-title">How I Helped Two Major Telcos Streamline Copper Decommissioning</div>
+          <p class="article-excerpt">
+            For Bell and Telus, phasing out copper isn't just a technical upgrade — it's a massive,
+            expensive, operationally complex project. Here's how I helped bring structure to it.
+          </p>
+          <a href="https://furthermaf.substack.com/p/how-i-helped-two-major-telcos-streamline" target="_blank" rel="noopener" class="article-cta">Read on Substack ↗</a>
+        </div>
+        <div class="article-card reveal">
+          <div class="article-meta">
+            <span>Product Management</span>
+            <span class="article-dot"></span>
+          </div>
+          <div class="article-title">What Bad Products Taught Me About Good Product Managers</div>
+          <p class="article-excerpt">
+            We've all used bad products. Frustration eventually gives way to pattern recognition —
+            and that pattern recognition becomes some of the most valuable learning for a PM.
+          </p>
+          <a href="https://furthermaf.substack.com/p/what-bad-products-taught-me-about" target="_blank" rel="noopener" class="article-cta">Read on Substack ↗</a>
+        </div>
+        <div class="article-card reveal">
+          <div class="article-meta">
+            <span>Business Analysis</span>
+            <span class="article-dot"></span>
+          </div>
+          <div class="article-title">Why Every BA Should Treat Requirements Like a Product</div>
+          <p class="article-excerpt">
+            Too many BAs treat requirements like paperwork. The best ones treat them like a product —
+            something to be shaped, validated, and aligned with real user value.
+          </p>
+          <a href="https://furthermaf.substack.com/p/why-every-ba-should-treat-requirements" target="_blank" rel="noopener" class="article-cta">Read on Substack ↗</a>
+        </div>
+        <div class="article-card reveal">
+          <div class="article-meta">
+            <span>Product Strategy</span>
+            <span class="article-dot"></span>
+          </div>
+          <div class="article-title">How Spotify Could Turn Free Listeners Into Paid Loyalists</div>
+          <p class="article-excerpt">
+            Spotify has 600 million users. Nearly 60% don't pay a dime — not because they can't,
+            but because Spotify hasn't given them a real reason to care. Here's how they could fix that.
+          </p>
+          <a href="https://furthermaf.substack.com/p/how-spotify-could-turn-free-listeners" target="_blank" rel="noopener" class="article-cta">Read on Substack ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p class="section-label">Let's Connect</p>
+          <h2>Say hello.</h2>
+          <p>
+            Open to PM roles, freelance product consulting, and interesting conversations.
+            I'd love to hear from you — whether you have a role in mind or just want to connect.
+          </p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <a href="mailto:oofolarin@gmail.com">oofolarin@gmail.com</a>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+                </svg>
+              </div>
+              <a href="https://www.linkedin.com/in/lanrefolarin/" target="_blank" rel="noopener">linkedin.com/in/lanrefolarin</a>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </div>
+              <a href="Lanre_Folarin_Resume.pdf" download>Download Resume</a>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me a bit about the opportunity or just say hi..." required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary">Send Message →</button>
+            <span id="form-status" style="font-size: 0.82rem; color: var(--muted);"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">Lanre Folarin</div>
+    <div class="footer-right">© 2026 · Built with care</div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close nav on link click (mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Stagger children of grids
+    document.querySelectorAll('.projects-grid, .writing-grid, .cert-grid, .skills-grid').forEach(grid => {
+      grid.querySelectorAll('.reveal').forEach((child, i) => {
+        child.style.transitionDelay = `${i * 0.08}s`;
+      });
+    });
+
+    // Active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navAs = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 90) current = s.id;
+      });
+      navAs.forEach(a => {
+        a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--accent)' : '';
+      });
+    });
+
+    // Form submit handler
+    function handleSubmit(e) {
+      e.preventDefault();
+      const status = document.getElementById('form-status');
+      status.textContent = 'Message sent! I\'ll be in touch soon.';
+      status.style.color = 'var(--accent)';
+      e.target.reset();
+      setTimeout(() => status.textContent = '', 5000);
+    }
+  </script>
+</body>
+</html>
