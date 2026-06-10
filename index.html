@@ -914,17 +914,45 @@
     .cert-card:hover { border-color: rgba(242, 165, 58, 0.45); }
 
     .cert-card.featured::before {
-      content: 'VERIFIED';
+      content: 'KEY CREDENTIAL';
       position: absolute;
-      top: 1.1rem; right: -2rem;
+      top: 30px; right: -48px;
+      width: 190px;
+      text-align: center;
       font-family: var(--mono);
-      font-size: 0.55rem;
-      letter-spacing: 0.3em;
+      font-size: 0.52rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      line-height: 1;
       color: var(--ink);
       background: var(--signal);
-      padding: 0.2rem 2.4rem;
-      transform: rotate(38deg);
+      padding: 0.45rem 0;
+      transform: rotate(45deg);
+      z-index: 2;
     }
+
+    a.cert-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      cursor: pointer;
+    }
+
+    .cert-verify {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    a.cert-card:hover .cert-verify { opacity: 1; }
 
     .cert-badge {
       width: 46px; height: 46px;
@@ -1660,22 +1688,24 @@
         <h2>Certifications &amp; Education</h2>
       </div>
       <div class="cert-grid">
-        <div class="cert-card featured reveal" data-tilt data-tilt-max="5">
+        <a class="cert-card featured reveal" data-tilt data-tilt-max="5" href="https://badges.iiba.org/5daba7a4-ba5b-4227-935c-a09b21ceb0da" target="_blank" rel="noopener">
           <div class="cert-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/></svg>
           </div>
           <div class="cert-name">Certified Business Analysis Professional (CBAP)</div>
           <div class="cert-issuer">IIBA · International Institute of Business Analysis</div>
           <div class="cert-year">ISSUED 2022 · ID 61059315</div>
-        </div>
-        <div class="cert-card featured reveal" data-tilt data-tilt-max="5">
+          <span class="cert-verify">Verify credential ↗</span>
+        </a>
+        <a class="cert-card featured reveal" data-tilt data-tilt-max="5" href="https://certificate.productschool.com/535a062c-5ad0-4bf8-bb81-f5c373b8181c" target="_blank" rel="noopener">
           <div class="cert-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M7 14l3-3 2 2 4-5"/><path d="M9 21h6"/></svg>
           </div>
           <div class="cert-name">Product Management Certification</div>
           <div class="cert-issuer">Product School</div>
           <div class="cert-year">ISSUED 2023</div>
-        </div>
+          <span class="cert-verify">Verify credential ↗</span>
+        </a>
         <div class="cert-card reveal" data-tilt data-tilt-max="5">
           <div class="cert-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v5"/></svg>
