@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/31716517/README.md)
 # lanrefolarin.github.io
 
 Personal portfolio site for Lanre Folarin, Senior Business Analyst at United BioSource (UBC), building toward Product Management.
@@ -33,7 +32,6 @@ The design treats the page as a traceable requirements document. Sections carry 
 - `index.html` - portfolio page
 - `lanre-folarin.jpg` - portrait
 - `Lanre_Folarin_Resume.pdf` - downloadable resume (PDF)
-- `Lanre_Folarin_Resume.docx` - downloadable resume (Word)
 
 ## Contact
 

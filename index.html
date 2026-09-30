@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lanre Folarin | Senior Business Analyst</title>
-  <meta name="description" content="Lanre Folarin. Senior Business Analyst, CBAP certified, building toward Product Management. 14 years of professional experience in Canada, 9+ in business analysis, turning ambiguous business problems into structured delivery.">
+  <meta name="description" content="Lanre Folarin. Senior Business Analyst, CBAP certified, building toward Product Management. 14 years of professional experience in Canada, 9 in business analysis, turning ambiguous business problems into structured delivery.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1204,7 +1204,7 @@
         </h1>
         <p class="hero-role fade-item" style="animation-delay: 0.4s">Business Systems Analysis <span class="sep">/</span> CBAP Certified <span class="sep">/</span> Product-Minded</p>
         <p class="hero-desc fade-item" style="animation-delay: 0.5s">
-          I translate ambiguous business problems into structured delivery. <strong>14 years</strong> across logistics, manufacturing, FMCG, telecom, government, and pharmaceutical services, <strong>9+ of them in business analysis</strong>, at the intersection of user needs, business constraints, and engineering execution.
+          I translate ambiguous business problems into structured delivery. <strong>14 years</strong> across logistics, manufacturing, FMCG, telecom, government, and pharmaceutical services, <strong>9 of them in business analysis</strong>, at the intersection of user needs, business constraints, and engineering execution.
         </p>
         <p class="hero-desc fade-item" style="animation-delay: 0.58s">
           <strong>CBAP certified. Product School trained.</strong> Building toward Product Management with the operational depth most PMs spend years trying to develop.
@@ -1269,7 +1269,7 @@
       <div class="dash-grid reveal">
         <div class="kpi">
           <div class="kpi-num"><span class="count" data-target="14">0</span><span class="suffix">+</span></div>
-          <div class="kpi-label">Years of professional experience in Canada, 9+ in business analysis</div>
+          <div class="kpi-label">Years of professional experience in Canada, 9 in business analysis</div>
         </div>
         <div class="kpi">
           <div class="kpi-num"><span class="count" data-target="7">0</span></div>
@@ -1417,7 +1417,7 @@
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <div class="timeline-role">Business Analyst</div>
-            <div class="timeline-company">Mother Parker's Tea &amp; Coffee · Mississauga, ON</div>
+            <div class="timeline-company">Mother Parkers Tea &amp; Coffee · Mississauga, ON</div>
             <p class="timeline-desc">
               Delivered internal automation tools that reduced order entry errors by 30% and improved demand forecasting accuracy across 3 departments. Facilitated pain-point workshops converting findings into a phased backlog that shipped 4 releases on schedule. Coordinated UAT and deployment for 6 system enhancements with full user adoption within 30 days of each release.
             </p>
@@ -1593,7 +1593,7 @@
               <div class="stack-num">05</div>
               <div class="stack-context">FMCG · Previous</div>
               <div class="stack-title">CRM &amp; Order Automation Initiative</div>
-              <div class="stack-org">Process Automation · Mother Parker's Tea &amp; Coffee</div>
+              <div class="stack-org">Process Automation · Mother Parkers Tea &amp; Coffee</div>
               <div class="stack-fig">
                 <svg viewBox="0 0 360 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                   <g stroke="#2233D9" stroke-opacity="0.42" fill="none" stroke-width="1.4">
@@ -1987,15 +1987,23 @@
     counters.forEach(c => counterObs.observe(c));
 
     /* ── Interactive career chart ── */
+    /* Tenure in years, counted by calendar month (start and end months both count, as LinkedIn does).
+       Current roles (end: null) run to the visitor's current month, so the chart stays up to date. */
+    const monthsBetween = (start, end) => {
+      const [sy, sm] = start.split('-').map(Number);
+      const now = new Date();
+      const [ey, em] = end ? end.split('-').map(Number) : [now.getFullYear(), now.getMonth() + 1];
+      return (ey - sy) * 12 + (em - sm) + 1;
+    };
     const chartData = [
-      { org: "Mother Parker's", role: 'Business Analyst', years: 1.6, target: 'exp-mp' },
-      { org: 'DB Schenker', role: 'Business Analyst', years: 1.7, target: 'exp-dbs' },
-      { org: 'CMI · ERP BA', role: 'ERP Business Analyst', years: 1.8, target: 'exp-cmi1' },
-      { org: 'CMI · Sr BSA', role: 'Senior Business System Analyst', years: 2.1, target: 'exp-cmi2' },
-      { org: 'Schneider', role: 'Business Architect', years: 0.6, target: 'exp-se' },
-      { org: 'Min. of Health', role: 'Senior Business Analyst', years: 0.6, target: 'exp-moh' },
-      { org: 'UBC', role: 'Senior Business Analyst', years: 0.2, target: 'exp-ubc', current: true }
-    ];
+      { org: 'Mother Parkers', role: 'Business Analyst', start: '2017-08', end: '2019-03', target: 'exp-mp' },
+      { org: 'DB Schenker', role: 'Business Analyst', start: '2019-04', end: '2020-12', target: 'exp-dbs' },
+      { org: 'CMI · ERP BA', role: 'ERP Business Analyst', start: '2021-01', end: '2022-10', target: 'exp-cmi1' },
+      { org: 'CMI · Sr BSA', role: 'Senior Business System Analyst', start: '2022-11', end: '2024-12', target: 'exp-cmi2' },
+      { org: 'Schneider', role: 'Business Architect', start: '2025-05', end: '2025-11', target: 'exp-se' },
+      { org: 'Min. of Health', role: 'Senior Business Analyst', start: '2025-12', end: '2026-06', target: 'exp-moh' },
+      { org: 'UBC', role: 'Senior Business Analyst', start: '2026-06', end: null, target: 'exp-ubc', current: true }
+    ].map(d => ({ ...d, years: Math.round(monthsBetween(d.start, d.end) / 12 * 10) / 10 }));
 
     const chart = document.getElementById('careerChart');
     const tip = document.getElementById('chartTip');
