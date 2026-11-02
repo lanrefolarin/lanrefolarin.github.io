@@ -571,6 +571,38 @@
     }
     .timeline-item:hover .tag { border-color: rgba(34, 51, 217, 0.3); color: var(--body); }
 
+    .timeline-earlier { position: relative; }
+    .timeline-earlier > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.3rem 0.9rem;
+      margin-left: calc(186px + 3.2rem + 1.5rem);
+      padding: 0.8rem 0 0.8rem;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--blue);
+    }
+    .timeline-earlier > summary::-webkit-details-marker { display: none; }
+    .timeline-earlier > summary::before {
+      content: '+';
+      font-family: var(--mono);
+      font-weight: 500;
+      width: 1.2rem;
+    }
+    .timeline-earlier[open] > summary::before { content: '−'; }
+    .timeline-earlier > summary:hover { color: var(--blue-deep); }
+    .timeline-earlier > summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+    .earlier-meta {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
     /* ════════ PROJECTS ════════ */
     .stack { margin-top: 3.6rem; display: flex; flex-direction: column; gap: 2.2rem; }
 
@@ -966,8 +998,6 @@
       text-transform: uppercase;
     }
 
-    /* ════════ REVEAL ════════ */
-
     /* ════════ RESPONSIVE ════════ */
     @media (max-width: 1000px) {
       .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
@@ -978,6 +1008,7 @@
       .kpi:nth-child(even) { padding-left: 1.8rem; }
       .timeline::before { left: 4px; }
       .timeline-item { grid-template-columns: 1fr; padding-left: 1.9rem; }
+      .timeline-earlier > summary { margin-left: 1.9rem; }
       .timeline-date { text-align: left; margin-bottom: 0.45rem; padding-right: 0; }
       .timeline-date .now { display: inline; margin-left: 0.7rem; }
       .timeline-dot { left: 0; top: 32px; }
@@ -1243,60 +1274,63 @@
             </div>
           </div>
         </div>
-        <div class="timeline-item" id="exp-cmi1">
-          <div class="timeline-date"><span>JAN 2021 → OCT 2022</span></div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-role">ERP Business Analyst</div>
-            <div class="timeline-company">Combined Metal Industries · Vaughan, ON</div>
-            <p class="timeline-desc">
-              Produced BRDs and RTMs for 5 ERP workflow and BI dashboard enhancements, reducing mid-sprint rework by 30%. Built Power BI dashboards for logistics KPIs that contributed to $150K+ in annualised cost savings. Drove Agile delivery in Azure DevOps, achieving a 90%+ sprint completion rate across 12 consecutive sprints with an 8-person squad.
-            </p>
-            <div class="timeline-tags">
-              <span class="tag">ERP</span>
-              <span class="tag">Power BI</span>
-              <span class="tag">Azure DevOps</span>
-              <span class="tag">Agile</span>
-              <span class="tag">BRD / RTM</span>
+        <details class="timeline-earlier" id="earlierRoles">
+          <summary>Earlier roles, 2017–2022 <span class="earlier-meta">Combined Metal ERP · DB Schenker · Mother Parkers</span></summary>
+          <div class="timeline-item" id="exp-cmi1">
+            <div class="timeline-date"><span>JAN 2021 → OCT 2022</span></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">ERP Business Analyst</div>
+              <div class="timeline-company">Combined Metal Industries · Vaughan, ON</div>
+              <p class="timeline-desc">
+                Produced BRDs and RTMs for 5 ERP workflow and BI dashboard enhancements, reducing mid-sprint rework by 30%. Built Power BI dashboards for logistics KPIs that contributed to $150K+ in annualised cost savings. Drove Agile delivery in Azure DevOps, achieving a 90%+ sprint completion rate across 12 consecutive sprints with an 8-person squad.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag">ERP</span>
+                <span class="tag">Power BI</span>
+                <span class="tag">Azure DevOps</span>
+                <span class="tag">Agile</span>
+                <span class="tag">BRD / RTM</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="timeline-item" id="exp-dbs">
-          <div class="timeline-date"><span>APR 2019 → DEC 2020</span></div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-role">Business Analyst</div>
-            <div class="timeline-company">DB Schenker · Contract · Milton, ON</div>
-            <p class="timeline-desc">
-              Owned UAT strategy for 24 Power BI dashboards delivered to Finance, IT, and Operations, achieving zero critical defects at go-live across all releases. Managed the BI and analytics product backlog and performed SQL data profiling across 5M+ records. Championed order fulfilment process improvements that contributed to a 15% improvement in on-time shipment performance.
-            </p>
-            <div class="timeline-tags">
-              <span class="tag">Power BI</span>
-              <span class="tag">SQL</span>
-              <span class="tag">UAT</span>
-              <span class="tag">Backlog Management</span>
-              <span class="tag">Analytics</span>
+          <div class="timeline-item" id="exp-dbs">
+            <div class="timeline-date"><span>APR 2019 → DEC 2020</span></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">Business Analyst</div>
+              <div class="timeline-company">DB Schenker · Contract · Milton, ON</div>
+              <p class="timeline-desc">
+                Owned UAT strategy for 24 Power BI dashboards delivered to Finance, IT, and Operations, achieving zero critical defects at go-live across all releases. Managed the BI and analytics product backlog and performed SQL data profiling across 5M+ records. Championed order fulfilment process improvements that contributed to a 15% improvement in on-time shipment performance.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag">Power BI</span>
+                <span class="tag">SQL</span>
+                <span class="tag">UAT</span>
+                <span class="tag">Backlog Management</span>
+                <span class="tag">Analytics</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="timeline-item" id="exp-mp">
-          <div class="timeline-date"><span>AUG 2017 → MAR 2019</span></div>
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-role">Business Analyst</div>
-            <div class="timeline-company">Mother Parkers Tea &amp; Coffee · Mississauga, ON</div>
-            <p class="timeline-desc">
-              Delivered internal automation tools that reduced order entry errors by 30% and improved demand forecasting accuracy across 3 departments. Facilitated pain-point workshops converting findings into a phased backlog that shipped 4 releases on schedule. Coordinated UAT and deployment for 6 system enhancements with full user adoption within 30 days of each release.
-            </p>
-            <div class="timeline-tags">
-              <span class="tag">CRM</span>
-              <span class="tag">Requirements Gathering</span>
-              <span class="tag">Demand Forecasting</span>
-              <span class="tag">UAT</span>
-              <span class="tag">Process Automation</span>
+          <div class="timeline-item" id="exp-mp">
+            <div class="timeline-date"><span>AUG 2017 → MAR 2019</span></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-role">Business Analyst</div>
+              <div class="timeline-company">Mother Parkers Tea &amp; Coffee · Mississauga, ON</div>
+              <p class="timeline-desc">
+                Delivered internal automation tools that reduced order entry errors by 30% and improved demand forecasting accuracy across 3 departments. Facilitated pain-point workshops converting findings into a phased backlog that shipped 4 releases on schedule. Coordinated UAT and deployment for 6 system enhancements with full user adoption within 30 days of each release.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag">CRM</span>
+                <span class="tag">Requirements Gathering</span>
+                <span class="tag">Demand Forecasting</span>
+                <span class="tag">UAT</span>
+                <span class="tag">Process Automation</span>
+              </div>
             </div>
           </div>
-        </div>
+        </details>
       </div>
     </div>
   </section>
@@ -1539,73 +1573,36 @@
       </div>
       <div class="skills-grid">
         <div class="skill-group">
-          <div class="skill-group-title">Product Management</div>
-          <div class="skill-pills">
-            <span class="pill">Product Strategy &amp; Roadmapping</span>
-            <span class="pill">User Story Creation</span>
-            <span class="pill">Backlog Management</span>
-            <span class="pill">Stakeholder Management</span>
-            <span class="pill">Cross-Functional Leadership</span>
-            <span class="pill">Agile &amp; Scrum</span>
-            <span class="pill">Product Lifecycle Management</span>
-            <span class="pill">Customer-Centric Thinking</span>
-            <span class="pill">MoSCoW &amp; RICE</span>
-          </div>
-        </div>
-        <div class="skill-group">
           <div class="skill-group-title">Business Analysis</div>
           <div class="skill-pills">
-            <span class="pill">Requirements Gathering</span>
-            <span class="pill">Business Process Modeling</span>
-            <span class="pill">Functional Documentation</span>
-            <span class="pill">Gap Analysis</span>
-            <span class="pill">Use Case Development</span>
-            <span class="pill">BPMN</span>
+            <span class="pill">Requirements &amp; Use Cases</span>
             <span class="pill">RTM &amp; Traceability</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-title">Data &amp; Financial Analysis</div>
-          <div class="skill-pills">
-            <span class="pill">Financial Planning &amp; Forecasting</span>
-            <span class="pill">Cost Tracking &amp; Analysis</span>
-            <span class="pill">Data Interpretation</span>
-            <span class="pill">KPI Definition &amp; Monitoring</span>
-            <span class="pill">Power BI</span>
-            <span class="pill">SQL</span>
-            <span class="pill">Reporting</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-title">Process Improvement</div>
-          <div class="skill-pills">
-            <span class="pill">Process Mapping &amp; Optimization</span>
-            <span class="pill">Workflow Analysis</span>
-            <span class="pill">Continuous Improvement</span>
-            <span class="pill">Operational Efficiency</span>
+            <span class="pill">Process Mapping (BPMN)</span>
+            <span class="pill">UAT Coordination</span>
+            <span class="pill">Gap Analysis</span>
             <span class="pill">Change Management</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="skill-group-title">Collaboration &amp; Communication</div>
+          <div class="skill-group-title">Product</div>
           <div class="skill-pills">
-            <span class="pill">Stakeholder Workshops</span>
-            <span class="pill">Executive Communication</span>
-            <span class="pill">Cross-Functional Collaboration</span>
-            <span class="pill">Conflict Resolution</span>
-            <span class="pill">UAT Coordination</span>
+            <span class="pill">Backlog Management</span>
+            <span class="pill">Roadmapping</span>
+            <span class="pill">User Stories</span>
+            <span class="pill">Agile &amp; Scrum</span>
+            <span class="pill">MoSCoW &amp; RICE</span>
+            <span class="pill">KPI Definition</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="skill-group-title">Tools</div>
+          <div class="skill-group-title">Data &amp; Tools</div>
           <div class="skill-pills">
-            <span class="pill">Jira</span>
-            <span class="pill">Confluence</span>
-            <span class="pill">Microsoft Excel</span>
-            <span class="pill">PowerPoint</span>
-            <span class="pill">Visio / Lucidchart</span>
+            <span class="pill">Power BI</span>
+            <span class="pill">SQL</span>
             <span class="pill">Azure DevOps</span>
-            <span class="pill">Miro</span>
+            <span class="pill">Jira &amp; Confluence</span>
+            <span class="pill">Visio / Lucidchart</span>
+            <span class="pill">Excel</span>
           </div>
         </div>
       </div>
@@ -1632,6 +1629,15 @@
             What a government funding dashboard taught me about building for people who never asked
             for what you built. On metric design as policy, deriving structure that isn't in the data,
             and why internal tools have to earn trust they were never given.
+          </p>
+          <span class="article-cta">Read on Substack</span>
+        </a>
+        <a class="article-card" aria-labelledby="art-6 newtab" href="https://furthermaf.substack.com/p/how-spotify-could-turn-free-listeners" target="_blank" rel="noopener">
+          <div class="article-meta">Product Strategy</div>
+          <div class="article-title" id="art-6">How Spotify Could Turn Free Listeners Into Paid Loyalists</div>
+          <p class="article-excerpt">
+            Spotify has 600 million users. Nearly 60% don't pay a dime, not because they can't,
+            but because Spotify hasn't given them a real reason to care. Here's how they could fix that.
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
@@ -1668,15 +1674,6 @@
           <p class="article-excerpt">
             Too many BAs treat requirements like paperwork. The best ones treat them like a product,
             something to be shaped, validated, and aligned with real user value.
-          </p>
-          <span class="article-cta">Read on Substack</span>
-        </a>
-        <a class="article-card" aria-labelledby="art-6 newtab" href="https://furthermaf.substack.com/p/how-spotify-could-turn-free-listeners" target="_blank" rel="noopener">
-          <div class="article-meta">Product Strategy</div>
-          <div class="article-title" id="art-6">How Spotify Could Turn Free Listeners Into Paid Loyalists</div>
-          <p class="article-excerpt">
-            Spotify has 600 million users. Nearly 60% don't pay a dime, not because they can't,
-            but because Spotify hasn't given them a real reason to care. Here's how they could fix that.
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
@@ -1912,6 +1909,8 @@
         g.addEventListener('click', () => {
           const t = document.getElementById(d.target);
           if (!t) return;
+          const earlier = t.closest('details');
+          if (earlier) earlier.open = true;
           t.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'center' });
           t.classList.add('flash');
           setTimeout(() => t.classList.remove('flash'), 2200);
