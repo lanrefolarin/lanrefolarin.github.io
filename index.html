@@ -213,28 +213,6 @@
       overflow: hidden;
     }
 
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .orb-1 {
-      width: 560px; height: 560px;
-      top: -140px; right: -120px;
-      background: radial-gradient(circle, rgba(34, 51, 217, 0.13), transparent 65%);
-      animation: drift1 22s ease-in-out infinite alternate;
-    }
-    .orb-2 {
-      width: 460px; height: 460px;
-      bottom: -160px; left: -140px;
-      background: radial-gradient(circle, rgba(232, 150, 30, 0.12), transparent 65%);
-      animation: drift2 26s ease-in-out infinite alternate;
-    }
-    @keyframes drift1 { to { transform: translate(-60px, 50px) scale(1.08); } }
-    @keyframes drift2 { to { transform: translate(70px, -40px) scale(1.05); } }
-
     .hero-grid-lines {
       position: absolute;
       inset: 0;
@@ -379,15 +357,6 @@
       box-shadow:
         0 1px 0 rgba(16, 19, 25, 0.04),
         0 24px 60px -18px rgba(16, 19, 25, 0.22);
-      transform: rotate(2deg);
-      transition: transform 0.5s var(--ease), box-shadow 0.5s;
-      will-change: transform;
-    }
-    .photo-card:hover {
-      transform: rotate(0deg) translateY(-6px);
-      box-shadow:
-        0 1px 0 rgba(16, 19, 25, 0.04),
-        0 34px 80px -20px rgba(16, 19, 25, 0.28);
     }
     .photo-card img {
       width: 100%;
@@ -395,22 +364,6 @@
       object-fit: cover;
       object-position: center top;
       display: block;
-    }
-    .photo-tag {
-      position: absolute;
-      left: 14px; bottom: 14px;
-      font-family: var(--mono);
-      font-size: 0.74rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink);
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      padding: 0.4rem 0.75rem;
-      border-radius: 999px;
-      border: 1px solid rgba(16, 19, 25, 0.06);
     }
     .photo-blueprint {
       position: absolute;
@@ -423,48 +376,6 @@
       pointer-events: none;
     }
 
-
-    /* ════════ MARQUEE ════════ */
-    .marquee-band {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: var(--card);
-      overflow: hidden;
-      padding: 1.1rem 0;
-      position: relative;
-    }
-    .marquee-band::before, .marquee-band::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 90px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .marquee-band::before { left: 0; background: linear-gradient(90deg, var(--card), transparent); }
-    .marquee-band::after { right: 0; background: linear-gradient(270deg, var(--card), transparent); }
-
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 36s linear infinite;
-    }
-    .marquee-band:hover .marquee-track { animation-play-state: paused; }
-    @keyframes marquee { to { transform: translateX(-50%); } }
-
-    .marquee-seq {
-      display: flex;
-      align-items: center;
-      white-space: nowrap;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .marquee-seq span { padding: 0 1.4rem; }
-    .marquee-seq .dot { color: var(--amber); padding: 0; }
 
     /* ════════ NUMBERS ════════ */
     .dash-grid {
@@ -660,18 +571,15 @@
     }
     .timeline-item:hover .tag { border-color: rgba(34, 51, 217, 0.3); color: var(--body); }
 
-    /* ════════ PROJECTS · sticky stack ════════ */
+    /* ════════ PROJECTS ════════ */
     .stack { margin-top: 3.6rem; display: flex; flex-direction: column; gap: 2.2rem; }
 
     .stack-card {
-      position: sticky;
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 24px 60px -26px rgba(16, 19, 25, 0.2);
-      will-change: transform;
-      transform-origin: center top;
     }
 
     .stack-card-inner {
@@ -984,16 +892,6 @@
     #contact p strong { color: #fff; font-weight: 600; }
     #contact p:last-of-type { margin-bottom: 2.6rem; }
 
-    .contact-orb {
-      position: absolute;
-      width: 640px; height: 640px;
-      top: -240px; right: -180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(34, 51, 217, 0.35), transparent 65%);
-      filter: blur(60px);
-      pointer-events: none;
-    }
-
     .contact-info { position: relative; z-index: 2; max-width: 760px; }
 
     .contact-details { display: flex; flex-direction: column; gap: 0.85rem; }
@@ -1069,16 +967,6 @@
     }
 
     /* ════════ REVEAL ════════ */
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      filter: blur(5px);
-      transition:
-        opacity 0.85s var(--ease),
-        transform 0.85s var(--ease),
-        filter 0.85s var(--ease);
-    }
-    .js .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 
     /* ════════ RESPONSIVE ════════ */
     @media (max-width: 1000px) {
@@ -1097,7 +985,6 @@
       .stack-card-inner { grid-template-columns: 1fr; }
       .stack-meta { border-right: none; border-bottom: 1px solid var(--line); }
       .stack-fig { display: none; }
-      .stack-card { position: static; transform: none !important; filter: none !important; }
     }
 
     @media (max-width: 640px) {
@@ -1139,17 +1026,14 @@
         transform: rotate(180deg);
         text-align: right;
       }
-      .marquee-seq { font-size: 0.74rem; }
     }
 
     /* ════════ REDUCED MOTION ════════ */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
-      .js .reveal, .fade-item { opacity: 1; transform: none; filter: none; }
+      .fade-item { opacity: 1; transform: none; }
       .stagger .w > span { transform: none; }
-      .marquee-track { animation: none !important; flex-wrap: wrap; }
-      .stack-card { position: relative !important; top: auto !important; }
     }
 
     /* skip link */
@@ -1178,8 +1062,6 @@
     #careerChart g:focus { outline: none; }
     #careerChart g:focus-visible rect:first-child { stroke: var(--blue); stroke-width: 3; }
   </style>
-  <noscript><style>.reveal { opacity: 1; transform: none; filter: none; }</style></noscript>
-  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -1210,8 +1092,6 @@
 
   <!-- ════════ HERO ════════ -->
   <section id="hero">
-    <div class="orb orb-1" aria-hidden="true"></div>
-    <div class="orb orb-2" aria-hidden="true"></div>
     <div class="hero-grid-lines" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-left">
@@ -1227,11 +1107,11 @@
           <strong>CBAP certified. Product School trained.</strong> Building toward Product Management with the operational depth most PMs spend years trying to develop.
         </p>
         <div class="hero-actions fade-item" style="animation-delay: 0.68s">
-          <a href="Lanre_Folarin_Resume.pdf" download class="btn btn-primary" data-magnetic>
+          <a href="Lanre_Folarin_Resume.pdf" download class="btn btn-primary">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download Resume
           </a>
-          <a href="#contact" class="btn btn-ghost" data-magnetic>Get in Touch →</a>
+          <a href="#contact" class="btn btn-ghost">Get in Touch →</a>
         </div>
         <p class="hero-status fade-item" style="animation-delay: 0.76s">Senior BA at United BioSource (UBC), Toronto. Open to conversations about product roles.</p>
       </div>
@@ -1239,53 +1119,20 @@
         <div class="photo-card">
           <span class="photo-blueprint" aria-hidden="true"></span>
           <img src="lanre-folarin.jpg" alt="Lanre Folarin">
-          <span class="photo-tag">L. Folarin · Toronto</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ════════ MARQUEE ════════ -->
-  <div class="marquee-band" aria-hidden="true">
-    <div class="marquee-track">
-      <div class="marquee-seq">
-        <span>Pharmaceutical Services</span><span class="dot">◆</span>
-        <span>Government</span><span class="dot">◆</span>
-        <span>Telecom</span><span class="dot">◆</span>
-        <span>Logistics</span><span class="dot">◆</span>
-        <span>Manufacturing</span><span class="dot">◆</span>
-        <span>Energy</span><span class="dot">◆</span>
-        <span>FMCG</span><span class="dot">◆</span>
-        <span>Power BI</span><span class="dot">◆</span>
-        <span>SQL</span><span class="dot">◆</span>
-        <span>Azure DevOps</span><span class="dot">◆</span>
-        <span>Jira</span><span class="dot">◆</span>
-      </div>
-      <div class="marquee-seq">
-        <span>Pharmaceutical Services</span><span class="dot">◆</span>
-        <span>Government</span><span class="dot">◆</span>
-        <span>Telecom</span><span class="dot">◆</span>
-        <span>Logistics</span><span class="dot">◆</span>
-        <span>Manufacturing</span><span class="dot">◆</span>
-        <span>Energy</span><span class="dot">◆</span>
-        <span>FMCG</span><span class="dot">◆</span>
-        <span>Power BI</span><span class="dot">◆</span>
-        <span>SQL</span><span class="dot">◆</span>
-        <span>Azure DevOps</span><span class="dot">◆</span>
-        <span>Jira</span><span class="dot">◆</span>
-      </div>
-    </div>
-  </div>
-
   <!-- ════════ NUMBERS ════════ -->
   <section id="numbers">
     <div class="container">
-      <div class="reveal">
+      <div>
         <p class="sec-id">REQ-00 / Baseline</p>
         <h2>By the numbers.</h2>
         <p class="sec-sub">A career, measured. Click a bar in the chart to trace it back to the role behind it.</p>
       </div>
-      <div class="dash-grid reveal">
+      <div class="dash-grid">
         <div class="kpi">
           <div class="kpi-num"><span class="count" data-target="14">14</span><span class="suffix">+</span></div>
           <div class="kpi-label">Years of professional experience in Canada, 9 in business analysis</div>
@@ -1303,7 +1150,7 @@
           <div class="kpi-label">Users prepared for adoption in one transformation</div>
         </div>
       </div>
-      <div class="chart-wrap reveal">
+      <div class="chart-wrap">
         <div class="chart-head">
           <span class="chart-title">Fig. 01 · Tenure by organization (years)</span>
           <span class="chart-note">interactive · click to trace</span>
@@ -1318,13 +1165,13 @@
   <!-- ════════ EXPERIENCE ════════ -->
   <section id="experience">
     <div class="container">
-      <div class="reveal">
+      <div>
         <p class="sec-id">REQ-01 / Experience</p>
         <h2>What I've owned and delivered.</h2>
         <p class="sec-sub">A track record of turning complexity into clarity across industries.</p>
       </div>
       <div class="timeline">
-        <div class="timeline-item reveal" id="exp-ubc">
+        <div class="timeline-item" id="exp-ubc">
           <div class="timeline-date"><span>JUN 2026 → PRESENT</span><span class="now">● CURRENT</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
@@ -1342,7 +1189,7 @@
             </div>
           </div>
         </div>
-        <div class="timeline-item reveal" id="exp-moh">
+        <div class="timeline-item" id="exp-moh">
           <div class="timeline-date"><span>DEC 2025 → JUN 2026</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
@@ -1360,7 +1207,7 @@
             </div>
           </div>
         </div>
-        <div class="timeline-item reveal" id="exp-se">
+        <div class="timeline-item" id="exp-se">
           <div class="timeline-date"><span>MAY → NOV 2025</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
@@ -1378,7 +1225,7 @@
             </div>
           </div>
         </div>
-        <div class="timeline-item reveal" id="exp-cmi2">
+        <div class="timeline-item" id="exp-cmi2">
           <div class="timeline-date"><span>NOV 2022 → DEC 2024</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
@@ -1396,7 +1243,7 @@
             </div>
           </div>
         </div>
-        <div class="timeline-item reveal" id="exp-cmi1">
+        <div class="timeline-item" id="exp-cmi1">
           <div class="timeline-date"><span>JAN 2021 → OCT 2022</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
@@ -1414,7 +1261,7 @@
             </div>
           </div>
         </div>
-        <div class="timeline-item reveal" id="exp-dbs">
+        <div class="timeline-item" id="exp-dbs">
           <div class="timeline-date"><span>APR 2019 → DEC 2020</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
@@ -1432,7 +1279,7 @@
             </div>
           </div>
         </div>
-        <div class="timeline-item reveal" id="exp-mp">
+        <div class="timeline-item" id="exp-mp">
           <div class="timeline-date"><span>AUG 2017 → MAR 2019</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
@@ -1457,7 +1304,7 @@
   <!-- ════════ PROJECTS · sticky stack ════════ -->
   <section id="projects">
     <div class="container">
-      <div class="reveal">
+      <div>
         <p class="sec-id">REQ-02 / Selected Work</p>
         <h2>Projects &amp; Case Studies</h2>
         <p class="sec-sub">Real problems, structured thinking, measurable outcomes. Each one framed the way I actually work: need, decision, impact.</p>
@@ -1649,12 +1496,12 @@
   <!-- ════════ CERTIFICATIONS ════════ -->
   <section id="certifications">
     <div class="container">
-      <div class="reveal">
+      <div>
         <p class="sec-id">REQ-03 / Credentials</p>
         <h2>Certifications &amp; Education</h2>
       </div>
       <div class="cert-grid">
-        <a class="cert-card featured reveal" href="https://badges.iiba.org/5daba7a4-ba5b-4227-935c-a09b21ceb0da" target="_blank" rel="noopener">
+        <a class="cert-card featured" href="https://badges.iiba.org/5daba7a4-ba5b-4227-935c-a09b21ceb0da" target="_blank" rel="noopener">
           <div class="cert-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/></svg>
           </div>
@@ -1663,7 +1510,7 @@
           <div class="cert-year">ISSUED 2022 · ID 61059315</div>
           <span class="cert-verify">Verify credential ↗</span>
         </a>
-        <a class="cert-card featured reveal" href="https://certificate.productschool.com/535a062c-5ad0-4bf8-bb81-f5c373b8181c" target="_blank" rel="noopener">
+        <a class="cert-card featured" href="https://certificate.productschool.com/535a062c-5ad0-4bf8-bb81-f5c373b8181c" target="_blank" rel="noopener">
           <div class="cert-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M7 14l3-3 2 2 4-5"/><path d="M9 21h6"/></svg>
           </div>
@@ -1672,7 +1519,7 @@
           <div class="cert-year">ISSUED 2023 · ID 70075741</div>
           <span class="cert-verify">Verify credential ↗</span>
         </a>
-        <div class="cert-card reveal">
+        <div class="cert-card">
           <div class="cert-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v5"/></svg>
           </div>
@@ -1686,12 +1533,12 @@
   <!-- ════════ SKILLS ════════ -->
   <section id="skills">
     <div class="container">
-      <div class="reveal">
+      <div>
         <p class="sec-id">REQ-04 / Capabilities</p>
         <h2>Skills &amp; Tools</h2>
       </div>
       <div class="skills-grid">
-        <div class="skill-group reveal">
+        <div class="skill-group">
           <div class="skill-group-title">Product Management</div>
           <div class="skill-pills">
             <span class="pill">Product Strategy &amp; Roadmapping</span>
@@ -1705,7 +1552,7 @@
             <span class="pill">MoSCoW &amp; RICE</span>
           </div>
         </div>
-        <div class="skill-group reveal">
+        <div class="skill-group">
           <div class="skill-group-title">Business Analysis</div>
           <div class="skill-pills">
             <span class="pill">Requirements Gathering</span>
@@ -1717,7 +1564,7 @@
             <span class="pill">RTM &amp; Traceability</span>
           </div>
         </div>
-        <div class="skill-group reveal">
+        <div class="skill-group">
           <div class="skill-group-title">Data &amp; Financial Analysis</div>
           <div class="skill-pills">
             <span class="pill">Financial Planning &amp; Forecasting</span>
@@ -1729,7 +1576,7 @@
             <span class="pill">Reporting</span>
           </div>
         </div>
-        <div class="skill-group reveal">
+        <div class="skill-group">
           <div class="skill-group-title">Process Improvement</div>
           <div class="skill-pills">
             <span class="pill">Process Mapping &amp; Optimization</span>
@@ -1739,7 +1586,7 @@
             <span class="pill">Change Management</span>
           </div>
         </div>
-        <div class="skill-group reveal">
+        <div class="skill-group">
           <div class="skill-group-title">Collaboration &amp; Communication</div>
           <div class="skill-pills">
             <span class="pill">Stakeholder Workshops</span>
@@ -1749,7 +1596,7 @@
             <span class="pill">UAT Coordination</span>
           </div>
         </div>
-        <div class="skill-group reveal">
+        <div class="skill-group">
           <div class="skill-group-title">Tools</div>
           <div class="skill-pills">
             <span class="pill">Jira</span>
@@ -1768,7 +1615,7 @@
   <!-- ════════ WRITING ════════ -->
   <section id="writing">
     <div class="container">
-      <div class="writing-header reveal">
+      <div class="writing-header">
         <div>
           <p class="sec-id">REQ-05 / On Substack</p>
           <h2>Things I think about.</h2>
@@ -1778,7 +1625,7 @@
       </div>
       <span id="newtab" class="visually-hidden">(Substack, opens in a new tab)</span>
       <div class="writing-grid">
-        <a class="article-card reveal" aria-labelledby="art-1 newtab" href="https://furthermaf.substack.com/p/when-your-users-cant-opt-out-designing" target="_blank" rel="noopener">
+        <a class="article-card" aria-labelledby="art-1 newtab" href="https://furthermaf.substack.com/p/when-your-users-cant-opt-out-designing" target="_blank" rel="noopener">
           <div class="article-meta">Product Management</div>
           <div class="article-title" id="art-1">When Your Users Can't Opt Out: Designing for Mandatory Workflows</div>
           <p class="article-excerpt">
@@ -1788,7 +1635,7 @@
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card reveal" aria-labelledby="art-2 newtab" href="https://furthermaf.substack.com/p/you-should-do-something-really-really" target="_blank" rel="noopener">
+        <a class="article-card" aria-labelledby="art-2 newtab" href="https://furthermaf.substack.com/p/you-should-do-something-really-really" target="_blank" rel="noopener">
           <div class="article-meta">Mindset</div>
           <div class="article-title" id="art-2">You Should Do Something Really, Really Hard This Year</div>
           <p class="article-excerpt">
@@ -1797,7 +1644,7 @@
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card reveal" aria-labelledby="art-3 newtab" href="https://furthermaf.substack.com/p/how-i-helped-two-major-telcos-streamline" target="_blank" rel="noopener">
+        <a class="article-card" aria-labelledby="art-3 newtab" href="https://furthermaf.substack.com/p/how-i-helped-two-major-telcos-streamline" target="_blank" rel="noopener">
           <div class="article-meta">Case Study</div>
           <div class="article-title" id="art-3">How I Helped Two Major Telcos Streamline Copper Decommissioning</div>
           <p class="article-excerpt">
@@ -1806,7 +1653,7 @@
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card reveal" aria-labelledby="art-4 newtab" href="https://furthermaf.substack.com/p/what-bad-products-taught-me-about" target="_blank" rel="noopener">
+        <a class="article-card" aria-labelledby="art-4 newtab" href="https://furthermaf.substack.com/p/what-bad-products-taught-me-about" target="_blank" rel="noopener">
           <div class="article-meta">Product Management</div>
           <div class="article-title" id="art-4">What Bad Products Taught Me About Good Product Managers</div>
           <p class="article-excerpt">
@@ -1815,7 +1662,7 @@
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card reveal" aria-labelledby="art-5 newtab" href="https://furthermaf.substack.com/p/why-every-ba-should-treat-requirements" target="_blank" rel="noopener">
+        <a class="article-card" aria-labelledby="art-5 newtab" href="https://furthermaf.substack.com/p/why-every-ba-should-treat-requirements" target="_blank" rel="noopener">
           <div class="article-meta">Business Analysis</div>
           <div class="article-title" id="art-5">Why Every BA Should Treat Requirements Like a Product</div>
           <p class="article-excerpt">
@@ -1824,7 +1671,7 @@
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card reveal" aria-labelledby="art-6 newtab" href="https://furthermaf.substack.com/p/how-spotify-could-turn-free-listeners" target="_blank" rel="noopener">
+        <a class="article-card" aria-labelledby="art-6 newtab" href="https://furthermaf.substack.com/p/how-spotify-could-turn-free-listeners" target="_blank" rel="noopener">
           <div class="article-meta">Product Strategy</div>
           <div class="article-title" id="art-6">How Spotify Could Turn Free Listeners Into Paid Loyalists</div>
           <p class="article-excerpt">
@@ -1839,9 +1686,8 @@
 
   <!-- ════════ CONTACT ════════ -->
   <section id="contact">
-    <div class="contact-orb" aria-hidden="true"></div>
     <div class="container">
-      <div class="contact-info reveal">
+      <div class="contact-info">
         <p class="sec-id">REQ-06 / Let's Connect</p>
         <h2>Open to the right conversation.</h2>
         <p>
@@ -1883,7 +1729,6 @@
   (function () {
     'use strict';
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isCoarse = window.matchMedia('(pointer: coarse)').matches;
 
     /* ── Nav scrolled state + progress bar ── */
     const topNav = document.getElementById('topNav');
@@ -1915,24 +1760,6 @@
       if (navLinks.classList.contains('open') && !topNav.contains(e.target)) setMenu(false);
     });
 
-    /* ── Scroll reveal ── */
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => revealObs.observe(el));
-
-    document.querySelectorAll('.writing-grid, .cert-grid, .skills-grid').forEach(grid => {
-      grid.querySelectorAll('.reveal').forEach((child, i) => {
-        child.style.transitionDelay = (i * 0.07) + 's';
-      });
-    });
-
     /* ── Section tracking (active nav) ── */
     const sectionIds = ['hero', 'numbers', 'experience', 'projects', 'certifications', 'skills', 'writing', 'contact'];
     const navAs = document.querySelectorAll('.nav-links a');
@@ -1952,49 +1779,8 @@
       navAs.forEach(a => {
         a.classList.toggle('active', a.getAttribute('href') === '#' + currentId);
       });
-
-      updateStack();
     }
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    /* ── Sticky stack: scale + fade previous cards as the next slides over ── */
-    const stackCards = Array.prototype.slice.call(document.querySelectorAll('.stack-card'));
-    const navH = 68;
-
-    stackCards.forEach((card, i) => {
-      card.style.top = (navH + 24 + i * 16) + 'px';
-    });
-
-    function updateStack() {
-      if (prefersReduced || !stackCards.length || window.innerWidth <= 1000) return;
-      for (let i = 0; i < stackCards.length - 1; i++) {
-        const card = stackCards[i];
-        const next = stackCards[i + 1];
-        const cardTop = card.getBoundingClientRect().top;
-        const nextTop = next.getBoundingClientRect().top;
-        const range = window.innerHeight * 0.85;
-        // 0 when next card is far below, 1 when next card reaches its sticky slot
-        const p = Math.min(1, Math.max(0, 1 - (nextTop - (navH + 24 + (i + 1) * 16)) / range));
-        const scale = 1 - p * 0.045;
-        card.style.transform = 'scale(' + scale.toFixed(4) + ')';
-        card.style.filter = 'brightness(' + (1 - p * 0.06).toFixed(3) + ')';
-      }
-    }
-
-    /* ── Magnetic buttons ── */
-    if (!isCoarse && !prefersReduced) {
-      document.querySelectorAll('[data-magnetic]').forEach(btn => {
-        btn.addEventListener('pointermove', (e) => {
-          const r = btn.getBoundingClientRect();
-          const dx = (e.clientX - r.left - r.width / 2) / (r.width / 2);
-          const dy = (e.clientY - r.top - r.height / 2) / (r.height / 2);
-          btn.style.transform = 'translate(' + (dx * 4).toFixed(1) + 'px, ' + (dy * 4 - 1).toFixed(1) + 'px)';
-        });
-        btn.addEventListener('pointerleave', () => {
-          btn.style.transform = 'translate(0, 0)';
-        });
-      });
-    }
 
     /* ── KPI counters ── */
     const counters = document.querySelectorAll('.count');

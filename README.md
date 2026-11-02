@@ -12,13 +12,11 @@ The design treats the page as a traceable requirements document. Sections carry 
 
 ## Features
 
-- Word-by-word hero name reveal on load, with a scroll progress bar and a scrolling marquee of industries and tools
-- Sticky-stacking project case studies: each card pins in place and scales back as the next one slides over it
-- Animated KPI counters and an interactive tenure chart; clicking a bar scrolls to the matching experience entry
+- Name reveal on load and a scroll progress bar that traces the reader down the document
 - Case studies framed as User Need, Decision, and Impact
+- Animated KPI figures and an interactive tenure chart; clicking a bar scrolls to the matching experience entry
 - Credential cards link directly to Accredible verification pages (IIBA and Product School)
-- Magnetic hover effect on primary buttons
-- Responsive down to mobile, keyboard focus styles, and `prefers-reduced-motion` support
+- Responsive down to mobile, a skip link, keyboard focus styles, and `prefers-reduced-motion` support
 
 ## Tech
 
