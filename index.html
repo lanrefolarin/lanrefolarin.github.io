@@ -262,18 +262,20 @@
     @keyframes riseUp { from { transform: translateY(110%); } }
 
     .hero-role {
-      font-family: var(--mono);
-      font-size: 0.76rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.7rem;
+      font-family: var(--display);
+      font-size: clamp(1.2rem, 2.1vw, 1.5rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 0.3rem 0;
     }
-    .hero-role .sep { color: var(--amber); margin: 0 0.7rem; }
+    .hero-role .sep { color: var(--amber); margin: 0 0.55rem; }
+    .hero-domain { flex-basis: 100%; font-size: clamp(0.92rem, 1.5vw, 1.08rem); font-weight: 500; color: var(--body); margin-top: 0.2rem; }
 
     .hero-desc {
       font-size: 1.08rem;
@@ -449,7 +451,8 @@
       opacity: 0;
       transition: opacity 0.15s;
       z-index: 5;
-      white-space: nowrap;
+      width: max-content;
+      max-width: min(320px, calc(100% - 16px));
       transform: translate(-50%, calc(-100% - 12px));
     }
     .chart-labels {
@@ -462,6 +465,8 @@
       text-align: center;
     }
     .chart-labels span { padding: 0 2px; }
+    .chart-labels b { display: block; font-weight: 600; color: var(--ink); }
+    .chart-labels i { display: block; font-style: normal; color: var(--amber-text); }
     .chart-tip .tip-org { color: #FFC46B; font-weight: 600; display: block; margin-bottom: 2px; }
 
     /* ════════ EXPERIENCE ════════ */
@@ -1030,6 +1035,7 @@
       .stack-body { padding: 1.7rem 1.5rem; }
       .stack-meta { padding: 1.7rem 1.5rem; }
       .chart-wrap { padding: 1.3rem 1rem 0.9rem; }
+      .chart-labels b, .chart-labels i { display: inline; }
       .chart-labels span {
         justify-self: center;
         white-space: nowrap;
@@ -1110,7 +1116,7 @@
           <span class="w"><span style="animation-delay: 0.12s">Lanre</span></span><br>
           <span class="w"><span class="accent" style="animation-delay: 0.24s">Folarin</span></span>
         </h1>
-        <p class="hero-role fade-item" style="animation-delay: 0.4s">Business Systems Analysis <span class="sep">/</span> CBAP Certified <span class="sep">/</span> Product-Minded</p>
+        <p class="hero-role fade-item" style="animation-delay: 0.4s">Senior Business Analyst <span class="sep" aria-hidden="true">·</span> CBAP <span class="hero-domain">REMS &amp; regulated healthcare</span></p>
         <p class="hero-desc fade-item" style="animation-delay: 0.5s">
           I translate ambiguous business problems into structured delivery. <strong>14 years</strong> across logistics, manufacturing, FMCG, energy, telecom, government, and pharmaceutical services, <strong>9 of them in business analysis</strong>, at the intersection of user needs, business constraints, and engineering execution.
         </p>
@@ -1163,9 +1169,9 @@
       </div>
       <div class="chart-wrap">
         <div class="chart-head">
-          <span class="chart-title">Fig. 01 · Tenure by organization (years)</span>
+          <span class="chart-title">Fig. 01 · Nine years in business analysis, role by role (years)</span>
         </div>
-        <svg id="careerChart" viewBox="0 0 900 240" role="group" aria-label="Tenure by organization. Each bar is a link to that role."></svg>
+        <svg id="careerChart" viewBox="0 0 900 240" role="group" aria-label="Years in each business analysis role, oldest to current. Each bar is a link to that role."></svg>
         <div class="chart-labels" id="chartLabels" aria-hidden="true"></div>
         <div class="chart-tip" id="chartTip"></div>
       </div>
@@ -1181,20 +1187,20 @@
       </div>
       <div class="timeline">
         <div class="timeline-item" id="exp-ubc">
-          <div class="timeline-date"><span>JUN 2026 → PRESENT</span><span class="now">● CURRENT</span></div>
+          <div class="timeline-date"><span>JUN 2026 → PRESENT</span><span class="now"><span aria-hidden="true">●</span> CURRENT</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <div class="timeline-role">Senior Business Analyst</div>
             <div class="timeline-company">United BioSource (UBC) · Pharmaceutical Support Services</div>
             <p class="timeline-desc">
-              Senior BA within the technology business analysis team, supporting the platforms behind UBC's patient support and hub services programs for pharmaceutical clients. Focused on requirements definition, systems analysis, and delivery in a regulated healthcare environment, bringing structured BA practice to a domain where data integrity and traceability are non-negotiable.
+              Supporting REMS (Risk Evaluation and Mitigation Strategy) platform delivery for pharmaceutical clients across patient support and hub services programs. Review and redline acceptance criteria in Azure DevOps, separating documentation gaps from genuine defects before tickets reach development, and triage ambiguous defect reports with business and QA before sign-off. Apply change discipline and traceability controls suited to a regulated SDLC, and maintain a consolidated tracker covering three concurrent REMS programs.
             </p>
             <div class="timeline-tags">
-              <span class="tag">Systems Analysis</span>
-              <span class="tag">Requirements</span>
-              <span class="tag">Healthcare / Pharma</span>
-              <span class="tag">SDLC</span>
-              <span class="tag">Stakeholder Mgmt</span>
+              <span class="tag">REMS</span>
+              <span class="tag">Acceptance Criteria</span>
+              <span class="tag">Defect Triage</span>
+              <span class="tag">Regulated SDLC</span>
+              <span class="tag">Azure DevOps</span>
             </div>
           </div>
         </div>
@@ -1205,7 +1211,7 @@
             <div class="timeline-role">Senior Business Analyst</div>
             <div class="timeline-company">Ministry of Health, Ontario Public Service · Fixed-Term Contract · Toronto, ON</div>
             <p class="timeline-desc">
-              Senior BA on two enterprise workstreams (Transfer Payment forecasting and Planning, Budgeting and Forecasting transformation) spanning Finance, Operations, and a 6-person dev team. Translated business priorities into 40+ epics sequenced by user dependency and business value, not technical convenience. Built a Power BI reporting suite tracking SLA compliance, aging, and cycle time, cutting manual reporting effort by roughly 3 hours per week and giving leadership a trusted single source of truth. Ran discovery with 10+ stakeholders to eliminate 3 manual handoff steps, shifting teams from reactive coordination to planned delivery.
+              Senior BA on two enterprise workstreams (Transfer Payment forecasting and Planning, Budgeting and Forecasting transformation) spanning Finance, Operations, and the development team. Translated business priorities into 40+ epics sequenced by user dependency and business value, not technical convenience. Built a Power BI reporting suite tracking SLA compliance, aging, and cycle time, cutting manual reporting effort by roughly 3 hours per week and giving leadership a trusted single source of truth. Ran discovery with 10+ stakeholders to eliminate 3 manual handoff steps, shifting teams from reactive coordination to planned delivery.
             </p>
             <div class="timeline-tags">
               <span class="tag">Stakeholder Management</span>
@@ -1248,7 +1254,7 @@
               <span class="tag">Power BI</span>
               <span class="tag">UAT</span>
               <span class="tag">RTM</span>
-              <span class="tag">Stakeholder Mgmt</span>
+              <span class="tag">Stakeholder Management</span>
             </div>
           </div>
         </div>
@@ -1380,7 +1386,7 @@
             <div class="stack-body">
               <div class="case-row">
                 <span class="case-label">User Need</span>
-                <span class="case-text">Finance teams were making multi-million dollar planning decisions on data they didn't fully trust. ERP errors were silently compounding into forecasts with no way to trace them back to the source.</span>
+                <span class="case-text">Finance teams were making planning decisions on data they didn't fully trust. ERP errors were silently compounding into forecasts with no way to trace them back to the source.</span>
               </div>
               <div class="case-row">
                 <span class="case-label">Decision</span>
@@ -1553,11 +1559,11 @@
         <div class="skill-group">
           <div class="skill-group-title">Business Analysis</div>
           <div class="skill-pills">
-            <span class="pill">Requirements &amp; Use Cases</span>
+            <span class="pill">Requirements &amp; Acceptance Criteria</span>
             <span class="pill">RTM &amp; Traceability</span>
             <span class="pill">Process Mapping (BPMN)</span>
-            <span class="pill">UAT Coordination</span>
-            <span class="pill">Gap Analysis</span>
+            <span class="pill">UAT &amp; Defect Triage</span>
+            <span class="pill">REMS &amp; Regulated SDLC</span>
             <span class="pill">Change Management</span>
           </div>
         </div>
@@ -1789,13 +1795,13 @@
       return (ey - sy) * 12 + (em - sm) + 1;
     };
     const chartData = [
-      { org: 'Mother Parkers', role: 'Business Analyst', start: '2017-08', end: '2019-03', target: 'exp-mp' },
-      { org: 'DB Schenker', role: 'Business Analyst', start: '2019-04', end: '2020-12', target: 'exp-dbs' },
-      { org: 'CMI · ERP BA', role: 'ERP Business Analyst', start: '2021-01', end: '2022-10', target: 'exp-cmi1' },
-      { org: 'CMI · Sr BSA', role: 'Senior Business System Analyst', start: '2022-11', end: '2024-12', target: 'exp-cmi2' },
-      { org: 'Schneider', role: 'Business Architect', start: '2025-05', end: '2025-11', target: 'exp-se' },
-      { org: 'Min. of Health', role: 'Senior Business Analyst', start: '2025-12', end: '2026-06', target: 'exp-moh' },
-      { org: 'UBC', role: 'Senior Business Analyst', start: '2026-06', end: null, target: 'exp-ubc', current: true }
+      { org: 'Mother Parkers', name: 'Mother Parkers Tea & Coffee', role: 'Business Analyst', start: '2017-08', end: '2019-03', target: 'exp-mp' },
+      { org: 'DB Schenker', name: 'DB Schenker', role: 'Business Analyst', start: '2019-04', end: '2020-12', target: 'exp-dbs', contract: true },
+      { org: 'CMI · ERP BA', name: 'Combined Metal Industries', role: 'ERP Business Analyst', start: '2021-01', end: '2022-10', target: 'exp-cmi1' },
+      { org: 'CMI · Sr BSA', name: 'Combined Metal Industries', role: 'Senior Business System Analyst', start: '2022-11', end: '2024-12', target: 'exp-cmi2' },
+      { org: 'Schneider', name: 'Schneider Electric', role: 'Business Architect', start: '2025-05', end: '2025-11', target: 'exp-se', contract: true },
+      { org: 'Min. of Health', name: 'Ontario Ministry of Health', role: 'Senior Business Analyst', start: '2025-12', end: '2026-06', target: 'exp-moh', contract: true },
+      { org: 'UBC', name: 'United BioSource', role: 'Senior Business Analyst', start: '2026-06', end: null, target: 'exp-ubc', current: true }
     ].map((d, i, all) => {
       const handover = all[i + 1] && all[i + 1].start === d.end ? 1 : 0;
       return { ...d, years: Math.round((monthsBetween(d.start, d.end) - handover) / 12 * 10) / 10 };
@@ -1814,6 +1820,11 @@
       const barW = Math.min(58, slot * 0.5);
       const svgNS = 'http://www.w3.org/2000/svg';
       const labels = document.getElementById('chartLabels');
+      const placeTip = (x, y, wrapW) => {
+        const half = tip.offsetWidth / 2, edge = 8;
+        tip.style.left = Math.min(Math.max(x, half + edge), wrapW - half - edge) + 'px';
+        tip.style.top = y + 'px';
+      };
       labels.style.gridTemplateColumns = 'repeat(' + n + ', 1fr)';
       labels.style.paddingLeft = (padL / W * 100) + '%';
       labels.style.paddingRight = (padR / W * 100) + '%';
@@ -1838,7 +1849,7 @@
         g.style.cursor = 'pointer';
         g.setAttribute('tabindex', '0');
         g.setAttribute('role', 'link');
-        g.setAttribute('aria-label', d.role + ' at ' + d.org + ', ' + d.years + ' years');
+        g.setAttribute('aria-label', d.role + ' at ' + d.name + (d.contract ? ' (contract)' : '') + ', ' + d.years + ' years' + (d.current ? ', ongoing' : ''));
         g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); g.dispatchEvent(new Event('click')); } });
 
         const rect = document.createElementNS(svgNS, 'rect');
@@ -1857,7 +1868,7 @@
         g.appendChild(hit);
 
         const lbl = document.createElement('span');
-        lbl.textContent = d.org;
+        lbl.innerHTML = '<b>' + d.years.toFixed(1) + '</b> ' + d.org + (d.contract ? ' <i>contract</i>' : '');
         labels.appendChild(lbl);
 
         const showTip = () => {
@@ -1874,14 +1885,12 @@
           showTip();
           const wr = chart.closest('.chart-wrap').getBoundingClientRect();
           const br = rect.getBoundingClientRect();
-          tip.style.left = (br.left + br.width / 2 - wr.left) + 'px';
-          tip.style.top = (br.top - wr.top) + 'px';
+          placeTip(br.left + br.width / 2 - wr.left, br.top - wr.top, wr.width);
         });
         g.addEventListener('blur', hideTip);
         g.addEventListener('pointermove', (e) => {
           const wr = chart.closest('.chart-wrap').getBoundingClientRect();
-          tip.style.left = (e.clientX - wr.left) + 'px';
-          tip.style.top = (e.clientY - wr.top) + 'px';
+          placeTip(e.clientX - wr.left, e.clientY - wr.top, wr.width);
         });
         g.addEventListener('pointerleave', hideTip);
         g.addEventListener('click', () => {
@@ -1889,6 +1898,8 @@
           if (!t) return;
           const earlier = t.closest('details');
           if (earlier) earlier.open = true;
+          t.setAttribute('tabindex', '-1');
+          t.focus({ preventScroll: true });
           t.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'center' });
           t.classList.add('flash');
           setTimeout(() => t.classList.remove('flash'), 2200);
