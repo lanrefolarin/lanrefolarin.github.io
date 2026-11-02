@@ -182,6 +182,7 @@
       padding: 0.5rem 1.15rem !important;
       transition: background 0.2s, transform 0.2s !important;
     }
+    .nav-cta.active { background: var(--blue) !important; }
     .nav-cta:hover { background: var(--blue) !important; transform: translateY(-1px); }
 
     .hamburger {
@@ -367,16 +368,6 @@
       object-position: center top;
       display: block;
     }
-    .photo-blueprint {
-      position: absolute;
-      z-index: -1;
-      inset: -22px -22px auto auto;
-      width: 200px; height: 200px;
-      border: 1.5px dashed rgba(34, 51, 217, 0.35);
-      border-radius: 30px;
-      top: -22px; right: -22px;
-      pointer-events: none;
-    }
 
 
     /* ════════ NUMBERS ════════ */
@@ -404,6 +395,7 @@
       align-items: baseline;
     }
     .kpi-num .suffix { color: var(--blue); font-size: 0.6em; margin-left: 2px; }
+    .kpi-num .prefix { color: var(--blue); font-size: 0.7em; margin-right: 2px; }
     .kpi-label {
       font-size: 0.84rem;
       color: var(--muted);
@@ -602,6 +594,72 @@
       color: var(--muted);
     }
 
+    /* ════════ RELEASE NOTES TICKER ════════ */
+    .ticker {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 6%;
+      background: var(--card);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .ticker-label {
+      flex-shrink: 0;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--blue-deep);
+    }
+    .ticker-viewport {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 48px, black calc(100% - 48px), transparent);
+      mask-image: linear-gradient(90deg, transparent, black 48px, black calc(100% - 48px), transparent);
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 60s linear infinite;
+    }
+    .ticker:hover .ticker-track,
+    .ticker:focus-within .ticker-track,
+    .ticker.is-paused .ticker-track { animation-play-state: paused; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+    .ticker-seq {
+      display: flex;
+      list-style: none;
+      white-space: nowrap;
+      font-size: 0.86rem;
+      color: var(--body);
+    }
+    .ticker-seq li { padding-right: 2.6rem; }
+    .ticker-date {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--amber-text);
+      margin-right: 0.6rem;
+    }
+    .ticker-toggle {
+      flex-shrink: 0;
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid #8F8A78;
+      border-radius: 999px;
+      padding: 0.35rem 0.85rem;
+      min-height: 32px;
+      cursor: pointer;
+    }
+    .ticker-toggle:hover { border-color: var(--ink); }
+
+    .mid-cta { margin-top: 3rem; font-size: 1.05rem; }
+    .mid-cta a { color: var(--blue); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+    .mid-cta a:hover { color: var(--blue-deep); }
+
     /* ════════ PROJECTS ════════ */
     .stack { margin-top: 3.6rem; display: flex; flex-direction: column; gap: 2.2rem; }
 
@@ -723,7 +781,7 @@
       color: inherit;
       transition: transform 0.35s var(--ease), box-shadow 0.35s, border-color 0.3s;
     }
-    .cert-card:hover {
+    a.cert-card:hover {
       transform: translateY(-6px);
       border-color: rgba(34, 51, 217, 0.28);
       box-shadow: 0 22px 50px -24px rgba(16, 19, 25, 0.2);
@@ -803,12 +861,7 @@
       transition: border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
       cursor: default;
     }
-    .pill:hover {
-      border-color: var(--blue);
-      color: var(--ink);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 18px -10px rgba(34, 51, 217, 0.3);
-    }
+    .pill:hover { border-color: var(--blue); color: var(--ink); }
 
     /* ════════ WRITING ════════ */
     .writing-header {
@@ -1023,6 +1076,7 @@
       .nav-links.open a { display: block; padding: 0.7rem 0.9rem; }
       .nav-cta { margin-left: 0; text-align: center; }
       .hero-name { font-size: clamp(2.9rem, 13.5vw, 4rem); }
+      .ticker-label { display: none; }
       #hero { padding-top: calc(var(--nav-h) + 28px); }
       .hero-role { margin-bottom: 1.2rem; }
       .hero-desc { font-size: 1rem; line-height: 1.65; }
@@ -1050,6 +1104,10 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .fade-item { opacity: 1; transform: none; }
+      .ticker-track { width: auto; animation: none; }
+      .ticker-seq { flex-wrap: wrap; white-space: normal; row-gap: 0.4rem; }
+      .ticker-seq[aria-hidden="true"], .ticker-toggle { display: none; }
+      .ticker-viewport { -webkit-mask-image: none; mask-image: none; }
       .stagger .w > span { transform: none; }
     }
 
@@ -1074,7 +1132,6 @@
     a:focus-visible, button:focus-visible {
       outline: 2px solid var(--blue);
       outline-offset: 3px;
-      border-radius: 6px;
     }
     #careerChart g:focus { outline: none; }
     #careerChart g:focus-visible rect:first-child { stroke: var(--blue); stroke-width: 3; }
@@ -1124,22 +1181,47 @@
           <strong>CBAP certified. Product School trained.</strong> Building toward Product Management with the operational depth most PMs spend years trying to develop.
         </p>
         <div class="hero-actions fade-item" style="animation-delay: 0.68s">
-          <a href="Lanre_Folarin_Resume.pdf" download class="btn btn-primary">
+          <a href="Lanre_Folarin_Resume.pdf" download class="btn btn-primary" data-magnetic>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download Resume
           </a>
-          <a href="#contact" class="btn btn-ghost">Get in Touch →</a>
+          <a href="#contact" class="btn btn-ghost" data-magnetic>Get in Touch →</a>
         </div>
         <p class="hero-status fade-item" style="animation-delay: 0.76s">Senior BA at United BioSource (UBC), Toronto. Open to conversations about product roles.</p>
       </div>
       <div class="hero-photo-col fade-item" style="animation-delay: 0.45s">
         <div class="photo-card">
-          <span class="photo-blueprint" aria-hidden="true"></span>
           <img src="lanre-folarin.jpg" alt="Lanre Folarin">
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ════════ RELEASE NOTES ════════ -->
+  <div class="ticker" id="ticker" role="region" aria-label="Site release notes">
+    <span class="ticker-label" aria-hidden="true">Release notes</span>
+    <div class="ticker-viewport">
+      <div class="ticker-track">
+        <ul class="ticker-seq">
+          <li><span class="ticker-date">Nov 2026</span>Every claim re-checked line by line against the résumé</li>
+          <li><span class="ticker-date">Nov 2026</span>Résumé added to the nav; contact rows made fully tappable</li>
+          <li><span class="ticker-date">Nov 2026</span>Accessibility pass to WCAG 2.2 AA</li>
+          <li><span class="ticker-date">Nov 2026</span>Six decorative effects cut after a design review</li>
+          <li><span class="ticker-date">Nov 2026</span>Skills edited from 40 tags to 18</li>
+          <li><span class="ticker-date">Nov 2026</span>Career chart now shows years per role and marks contracts</li>
+        </ul>
+        <ul class="ticker-seq" aria-hidden="true">
+          <li><span class="ticker-date">Nov 2026</span>Every claim re-checked line by line against the résumé</li>
+          <li><span class="ticker-date">Nov 2026</span>Résumé added to the nav; contact rows made fully tappable</li>
+          <li><span class="ticker-date">Nov 2026</span>Accessibility pass to WCAG 2.2 AA</li>
+          <li><span class="ticker-date">Nov 2026</span>Six decorative effects cut after a design review</li>
+          <li><span class="ticker-date">Nov 2026</span>Skills edited from 40 tags to 18</li>
+          <li><span class="ticker-date">Nov 2026</span>Career chart now shows years per role and marks contracts</li>
+        </ul>
+      </div>
+    </div>
+    <button class="ticker-toggle" type="button" aria-label="Pause release notes">Pause</button>
+  </div>
 
   <!-- ════════ NUMBERS ════════ -->
   <section id="numbers">
@@ -1147,7 +1229,7 @@
       <div>
         <p class="sec-id">REQ-00 / Baseline</p>
         <h2>By the numbers.</h2>
-        <p class="sec-sub">A career, measured. Click a bar in the chart to trace it back to the role behind it.</p>
+        <p class="sec-sub">What changed, not just what shipped. Select a bar in the chart to trace it back to the role behind it.</p>
       </div>
       <div class="dash-grid">
         <div class="kpi">
@@ -1155,16 +1237,16 @@
           <div class="kpi-label">Years of professional experience in Canada, 9 in business analysis</div>
         </div>
         <div class="kpi">
-          <div class="kpi-num"><span class="count" data-target="7">7</span></div>
-          <div class="kpi-label">Industries, from FMCG to pharmaceutical services</div>
+          <div class="kpi-num"><span class="prefix">−</span><span class="count" data-target="40">40</span><span class="suffix">%</span></div>
+          <div class="kpi-label">Manual reconciliation effort, after automating cost tracking in Power BI</div>
         </div>
         <div class="kpi">
-          <div class="kpi-num"><span class="count" data-target="24">24</span></div>
-          <div class="kpi-label">Dashboards shipped with zero critical defects</div>
+          <div class="kpi-num"><span class="prefix">−</span><span class="count" data-target="35">35</span><span class="suffix">%</span></div>
+          <div class="kpi-label">Post-release production issues, after adding UAT sign-off gates</div>
         </div>
         <div class="kpi">
-          <div class="kpi-num"><span class="count" data-target="200">200</span><span class="suffix">+</span></div>
-          <div class="kpi-label">Users prepared for adoption in one transformation</div>
+          <div class="kpi-num"><span class="prefix">$</span><span class="count" data-target="150">150</span><span class="suffix">K+</span></div>
+          <div class="kpi-label">Annualized cost savings from logistics KPI dashboards</div>
         </div>
       </div>
       <div class="chart-wrap">
@@ -1190,7 +1272,7 @@
           <div class="timeline-date"><span>JUN 2026 → PRESENT</span><span class="now"><span aria-hidden="true">●</span> CURRENT</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-role">Senior Business Analyst</div>
+            <h3 class="timeline-role">Senior Business Analyst</h3>
             <div class="timeline-company">United BioSource (UBC) · Pharmaceutical Support Services</div>
             <p class="timeline-desc">
               Supporting REMS (Risk Evaluation and Mitigation Strategy) platform delivery for pharmaceutical clients across patient support and hub services programs. Review and redline acceptance criteria in Azure DevOps, separating documentation gaps from genuine defects before tickets reach development, and triage ambiguous defect reports with business and QA before sign-off. Apply change discipline and traceability controls suited to a regulated SDLC, and maintain a consolidated tracker covering three concurrent REMS programs.
@@ -1208,7 +1290,7 @@
           <div class="timeline-date"><span>DEC 2025 → JUN 2026</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-role">Senior Business Analyst</div>
+            <h3 class="timeline-role">Senior Business Analyst</h3>
             <div class="timeline-company">Ministry of Health, Ontario Public Service · Fixed-Term Contract · Toronto, ON</div>
             <p class="timeline-desc">
               Senior BA on two enterprise workstreams (Transfer Payment forecasting and Planning, Budgeting and Forecasting transformation) spanning Finance, Operations, and the development team. Translated business priorities into 40+ epics sequenced by user dependency and business value, not technical convenience. Built a Power BI reporting suite tracking SLA compliance, aging, and cycle time, cutting manual reporting effort by roughly 3 hours per week and giving leadership a trusted single source of truth. Ran discovery with 10+ stakeholders to eliminate 3 manual handoff steps, shifting teams from reactive coordination to planned delivery.
@@ -1226,7 +1308,7 @@
           <div class="timeline-date"><span>MAY → NOV 2025</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-role">Business Architect</div>
+            <h3 class="timeline-role">Business Architect</h3>
             <div class="timeline-company">Schneider Electric · Contract · Milton, ON</div>
             <p class="timeline-desc">
               Embedded as the senior BA on a complex enterprise transformation, running discovery across 6 business units to build the requirements foundation for solution design. Accelerated design kick-off by 3 weeks by delivering a prioritized backlog before the solution team was fully onboarded. Designed the KPI and benefits-tracking framework used to demonstrate ROI to executive sponsors, and led change impact assessments that prepared 200+ users for adoption across 4 business units.
@@ -1244,7 +1326,7 @@
           <div class="timeline-date"><span>NOV 2022 → DEC 2024</span></div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <div class="timeline-role">Senior Business System Analyst</div>
+            <h3 class="timeline-role">Senior Business System Analyst</h3>
             <div class="timeline-company">Combined Metal Industries · Vaughan, ON</div>
             <p class="timeline-desc">
               Led discovery with Finance, Engineering, and Operations to define requirements for an asset recovery and contractor billing platform, translating a $2M+ reconciliation challenge into a traceable requirements baseline. Delivered Power BI reporting improvements that reduced manual reconciliation effort by 40%. Established a structured UAT process that cut post-release production issues by 35%.
@@ -1264,7 +1346,7 @@
             <div class="timeline-date"><span>JAN 2021 → OCT 2022</span></div>
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <div class="timeline-role">ERP Business Analyst</div>
+              <h3 class="timeline-role">ERP Business Analyst</h3>
               <div class="timeline-company">Combined Metal Industries · Vaughan, ON</div>
               <p class="timeline-desc">
                 Produced BRDs and RTMs for 5 ERP workflow and BI dashboard enhancements, reducing mid-sprint rework by 30%. Built Power BI dashboards for logistics KPIs that contributed to $150K+ in annualised cost savings. Drove Agile delivery in Azure DevOps, achieving a 90%+ sprint completion rate across 12 consecutive sprints with an 8-person squad.
@@ -1282,7 +1364,7 @@
             <div class="timeline-date"><span>APR 2019 → DEC 2020</span></div>
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <div class="timeline-role">Business Analyst</div>
+              <h3 class="timeline-role">Business Analyst</h3>
               <div class="timeline-company">DB Schenker · Contract · Milton, ON</div>
               <p class="timeline-desc">
                 Owned UAT strategy for 24 Power BI dashboards delivered to Finance, IT, and Operations, achieving zero critical defects at go-live across all releases. Managed the BI and analytics product backlog and performed SQL data profiling across 5M+ records. Championed order fulfilment process improvements that contributed to a 15% improvement in on-time shipment performance.
@@ -1300,7 +1382,7 @@
             <div class="timeline-date"><span>AUG 2017 → MAR 2019</span></div>
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <div class="timeline-role">Business Analyst</div>
+              <h3 class="timeline-role">Business Analyst</h3>
               <div class="timeline-company">Mother Parkers Tea &amp; Coffee · Mississauga, ON</div>
               <p class="timeline-desc">
                 Delivered internal automation tools that reduced order entry errors by 30% and improved demand forecasting accuracy across 3 departments. Facilitated pain-point workshops converting findings into a phased backlog that shipped 4 releases on schedule. Coordinated UAT and deployment for 6 system enhancements with full user adoption within 30 days of each release.
@@ -1324,7 +1406,7 @@
     <div class="container">
       <div>
         <p class="sec-id">REQ-02 / Selected Work</p>
-        <h2>Projects &amp; Case Studies</h2>
+        <h2>Projects &amp; case studies</h2>
         <p class="sec-sub">Real problems, structured thinking, measurable outcomes. Each one framed the way I actually work: need, decision, impact.</p>
       </div>
 
@@ -1335,7 +1417,7 @@
             <div class="stack-meta">
               <div class="stack-num">01</div>
               <div class="stack-context">Government · Recent</div>
-              <div class="stack-title">Transfer Payment Funding Package (TPFP)</div>
+              <h3 class="stack-title">Transfer Payment Funding Package (TPFP)</h3>
               <div class="stack-org">Approvals Analytics &amp; Reporting · Ontario Ministry of Health</div>
               <div class="stack-fig">
                 <svg viewBox="0 0 360 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -1372,7 +1454,7 @@
             <div class="stack-meta">
               <div class="stack-num">02</div>
               <div class="stack-context">Government · Recent</div>
-              <div class="stack-title">Planning, Budgeting &amp; Forecasting Transformation</div>
+              <h3 class="stack-title">Planning, Budgeting &amp; Forecasting Transformation</h3>
               <div class="stack-org">Financial Planning · Ontario Ministry of Health</div>
               <div class="stack-fig">
                 <svg viewBox="0 0 360 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -1405,7 +1487,7 @@
             <div class="stack-meta">
               <div class="stack-num">03</div>
               <div class="stack-context">Telecom · Previous</div>
-              <div class="stack-title">Copper Decommissioning Program</div>
+              <h3 class="stack-title">Copper Decommissioning Program</h3>
               <div class="stack-org">Cost Optimization · Combined Metal Industries (Clients: Bell &amp; Telus)</div>
               <div class="stack-fig">
                 <svg viewBox="0 0 360 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -1441,7 +1523,7 @@
             <div class="stack-meta">
               <div class="stack-num">04</div>
               <div class="stack-context">Logistics · Previous</div>
-              <div class="stack-title">BI Analytics Platform &amp; CRM Implementation</div>
+              <h3 class="stack-title">BI Analytics Platform &amp; CRM Implementation</h3>
               <div class="stack-org">Analytics Product · DB Schenker</div>
               <div class="stack-fig">
                 <svg viewBox="0 0 360 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -1477,7 +1559,7 @@
             <div class="stack-meta">
               <div class="stack-num">05</div>
               <div class="stack-context">FMCG · Previous</div>
-              <div class="stack-title">CRM &amp; Order Automation Initiative</div>
+              <h3 class="stack-title">CRM &amp; Order Automation Initiative</h3>
               <div class="stack-org">Process Automation · Mother Parkers Tea &amp; Coffee</div>
               <div class="stack-fig">
                 <svg viewBox="0 0 360 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -1508,6 +1590,7 @@
         </article>
 
       </div>
+      <p class="mid-cta"><a href="#contact">Hiring for a senior BA or product role? Let's talk →</a></p>
     </div>
   </section>
 
@@ -1516,14 +1599,14 @@
     <div class="container">
       <div>
         <p class="sec-id">REQ-03 / Credentials</p>
-        <h2>Certifications &amp; Education</h2>
+        <h2>Certifications &amp; education</h2>
       </div>
       <div class="cert-grid">
         <a class="cert-card" href="https://badges.iiba.org/5daba7a4-ba5b-4227-935c-a09b21ceb0da" target="_blank" rel="noopener">
           <div class="cert-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/><path d="M8.5 14.5L7 22l5-3 5 3-1.5-7.5"/></svg>
           </div>
-          <div class="cert-name">Certified Business Analysis Professional (CBAP)</div>
+          <h3 class="cert-name">Certified Business Analysis Professional (CBAP)</h3>
           <div class="cert-issuer">IIBA · International Institute of Business Analysis</div>
           <div class="cert-year">ISSUED 2022 · ID 61059315</div>
           <span class="cert-verify">Verify credential ↗ <span class="visually-hidden">(opens in a new tab)</span></span>
@@ -1532,7 +1615,7 @@
           <div class="cert-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="1"/><path d="M7 14l3-3 2 2 4-5"/><path d="M9 21h6"/></svg>
           </div>
-          <div class="cert-name">Product Manager Certification (PMC)™</div>
+          <h3 class="cert-name">Product Manager Certification (PMC)™</h3>
           <div class="cert-issuer">Product School</div>
           <div class="cert-year">ISSUED 2023 · ID 70075741</div>
           <span class="cert-verify">Verify credential ↗ <span class="visually-hidden">(opens in a new tab)</span></span>
@@ -1541,7 +1624,7 @@
           <div class="cert-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v5"/></svg>
           </div>
-          <div class="cert-name">Honours Bachelor of Business Administration</div>
+          <h3 class="cert-name">Honours Bachelor of Business Administration</h3>
           <div class="cert-issuer">Human Resources Management · Sheridan College</div>
         </div>
       </div>
@@ -1553,7 +1636,7 @@
     <div class="container">
       <div>
         <p class="sec-id">REQ-04 / Capabilities</p>
-        <h2>Skills &amp; Tools</h2>
+        <h2>Skills &amp; tools</h2>
       </div>
       <div class="skills-grid">
         <div class="skill-group">
@@ -1608,7 +1691,7 @@
       <div class="writing-grid">
         <a class="article-card" aria-labelledby="art-1 newtab" href="https://furthermaf.substack.com/p/when-your-users-cant-opt-out-designing" target="_blank" rel="noopener">
           <div class="article-meta">Product Management</div>
-          <div class="article-title" id="art-1">When Your Users Can't Opt Out: Designing for Mandatory Workflows</div>
+          <h3 class="article-title" id="art-1">When Your Users Can't Opt Out: Designing for Mandatory Workflows</h3>
           <p class="article-excerpt">
             What a government funding dashboard taught me about building for people who never asked
             for what you built. On metric design as policy, deriving structure that isn't in the data,
@@ -1618,46 +1701,19 @@
         </a>
         <a class="article-card" aria-labelledby="art-6 newtab" href="https://furthermaf.substack.com/p/how-spotify-could-turn-free-listeners" target="_blank" rel="noopener">
           <div class="article-meta">Product Strategy</div>
-          <div class="article-title" id="art-6">How Spotify Could Turn Free Listeners Into Paid Loyalists</div>
+          <h3 class="article-title" id="art-6">How Spotify Could Turn Free Listeners Into Paid Loyalists</h3>
           <p class="article-excerpt">
             Spotify has 600 million users. Nearly 60% don't pay a dime, not because they can't,
             but because Spotify hasn't given them a real reason to care. Here's how they could fix that.
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card" aria-labelledby="art-2 newtab" href="https://furthermaf.substack.com/p/you-should-do-something-really-really" target="_blank" rel="noopener">
-          <div class="article-meta">Mindset</div>
-          <div class="article-title" id="art-2">You Should Do Something Really, Really Hard This Year</div>
-          <p class="article-excerpt">
-            Not "busy" hard. Not "my calendar is full" hard. Uncomfortable, ego-checking,
-            why-did-I-sign-up-for-this hard. On the value of choosing difficulty with intention.
-          </p>
-          <span class="article-cta">Read on Substack</span>
-        </a>
-        <a class="article-card" aria-labelledby="art-3 newtab" href="https://furthermaf.substack.com/p/how-i-helped-two-major-telcos-streamline" target="_blank" rel="noopener">
-          <div class="article-meta">Case Study</div>
-          <div class="article-title" id="art-3">How I Helped Two Major Telcos Streamline Copper Decommissioning</div>
-          <p class="article-excerpt">
-            For Bell and Telus, phasing out copper isn't just a technical upgrade. It's a massive,
-            expensive, operationally complex project. Here's how I helped bring structure to it.
-          </p>
-          <span class="article-cta">Read on Substack</span>
-        </a>
         <a class="article-card" aria-labelledby="art-4 newtab" href="https://furthermaf.substack.com/p/what-bad-products-taught-me-about" target="_blank" rel="noopener">
           <div class="article-meta">Product Management</div>
-          <div class="article-title" id="art-4">What Bad Products Taught Me About Good Product Managers</div>
+          <h3 class="article-title" id="art-4">What Bad Products Taught Me About Good Product Managers</h3>
           <p class="article-excerpt">
             We've all used bad products. Frustration eventually gives way to pattern recognition,
             and that pattern recognition becomes some of the most valuable learning for a PM.
-          </p>
-          <span class="article-cta">Read on Substack</span>
-        </a>
-        <a class="article-card" aria-labelledby="art-5 newtab" href="https://furthermaf.substack.com/p/why-every-ba-should-treat-requirements" target="_blank" rel="noopener">
-          <div class="article-meta">Business Analysis</div>
-          <div class="article-title" id="art-5">Why Every BA Should Treat Requirements Like a Product</div>
-          <p class="article-excerpt">
-            Too many BAs treat requirements like paperwork. The best ones treat them like a product,
-            something to be shaped, validated, and aligned with real user value.
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
@@ -1710,6 +1766,7 @@
   (function () {
     'use strict';
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isCoarse = window.matchMedia('(pointer: coarse)').matches;
 
     /* ── Nav scrolled state + progress bar ── */
     const topNav = document.getElementById('topNav');
@@ -1762,6 +1819,32 @@
       });
     }
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* ── Magnetic buttons ── */
+    if (!isCoarse && !prefersReduced) {
+      document.querySelectorAll('[data-magnetic]').forEach(btn => {
+        btn.addEventListener('pointermove', (e) => {
+          const r = btn.getBoundingClientRect();
+          const dx = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+          const dy = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+          btn.style.transform = 'translate(' + (dx * 4).toFixed(1) + 'px, ' + (dy * 4 - 1).toFixed(1) + 'px)';
+        });
+        btn.addEventListener('pointerleave', () => {
+          btn.style.transform = 'translate(0, 0)';
+        });
+      });
+    }
+
+    /* ── Release-notes ticker: pausable ── */
+    const ticker = document.getElementById('ticker');
+    if (ticker) {
+      const toggle = ticker.querySelector('.ticker-toggle');
+      toggle.addEventListener('click', () => {
+        const paused = ticker.classList.toggle('is-paused');
+        toggle.textContent = paused ? 'Play' : 'Pause';
+        toggle.setAttribute('aria-label', (paused ? 'Play' : 'Pause') + ' release notes');
+      });
+    }
 
     /* ── KPI counters ── */
     const counters = document.querySelectorAll('.count');
