@@ -129,9 +129,9 @@
       backdrop-filter: blur(16px) saturate(1.4);
       -webkit-backdrop-filter: blur(16px) saturate(1.4);
       border-bottom: 1px solid transparent;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s, background 0.3s;
     }
-    nav.scrolled { border-bottom-color: var(--line); }
+    nav.scrolled { border-bottom-color: var(--line); background: rgba(251, 250, 246, 0.94); }
 
     .nav-logo {
       display: flex;
@@ -279,10 +279,9 @@
     }
     .stagger .w > span {
       display: inline-block;
-      transform: translateY(110%);
-      animation: riseUp 0.9s var(--ease) forwards;
+      animation: riseUp 0.9s var(--ease) backwards;
     }
-    @keyframes riseUp { to { transform: translateY(0); } }
+    @keyframes riseUp { from { transform: translateY(110%); } }
 
     .hero-role {
       font-family: var(--mono);
@@ -309,12 +308,8 @@
     .hero-actions { margin-top: 2.5rem; }
     .hero-desc + .hero-desc { margin-bottom: 0; }
 
-    .fade-item {
-      opacity: 0;
-      transform: translateY(18px);
-      animation: fadeRise 0.9s var(--ease) forwards;
-    }
-    @keyframes fadeRise { to { opacity: 1; transform: translateY(0); } }
+    .fade-item { animation: fadeRise 0.9s var(--ease) backwards; }
+    @keyframes fadeRise { from { opacity: 0; transform: translateY(18px); } }
 
     .hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: center; }
     .hero-status {
@@ -365,7 +360,7 @@
     .btn-ghost {
       background: transparent;
       color: var(--ink);
-      border: 1px solid var(--line-2);
+      border: 1px solid #8F8A78;
     }
     .btn-ghost:hover { border-color: var(--ink); }
 
@@ -552,6 +547,16 @@
       white-space: nowrap;
       transform: translate(-50%, calc(-100% - 12px));
     }
+    .chart-labels {
+      display: grid;
+      margin-top: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      line-height: 1.3;
+      color: var(--muted);
+      text-align: center;
+    }
+    .chart-labels span { padding: 0 2px; }
     .chart-tip .tip-org { color: #FFC46B; font-weight: 600; display: block; margin-bottom: 2px; }
 
     /* ════════ EXPERIENCE ════════ */
@@ -1059,12 +1064,12 @@
       font-family: var(--mono);
       font-size: 0.74rem;
       letter-spacing: 0.1em;
-      color: #6B7180;
+      color: #8A90A0;
       text-transform: uppercase;
     }
 
     /* ════════ REVEAL ════════ */
-    .reveal {
+    .js .reveal {
       opacity: 0;
       transform: translateY(28px);
       filter: blur(5px);
@@ -1073,7 +1078,7 @@
         transform 0.85s var(--ease),
         filter 0.85s var(--ease);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+    .js .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 
     /* ════════ RESPONSIVE ════════ */
     @media (max-width: 1000px) {
@@ -1126,7 +1131,14 @@
       .case-row { grid-template-columns: 70px 1fr; gap: 0.8rem; }
       .stack-body { padding: 1.7rem 1.5rem; }
       .stack-meta { padding: 1.7rem 1.5rem; }
-      .chart-wrap { padding: 1.3rem 1rem 0.6rem; }
+      .chart-wrap { padding: 1.3rem 1rem 0.9rem; }
+      .chart-labels span {
+        justify-self: center;
+        white-space: nowrap;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        text-align: right;
+      }
       .marquee-seq { font-size: 0.74rem; }
     }
 
@@ -1134,11 +1146,28 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
-      .reveal, .fade-item { opacity: 1; transform: none; filter: none; }
+      .js .reveal, .fade-item { opacity: 1; transform: none; filter: none; }
       .stagger .w > span { transform: none; }
       .marquee-track { animation: none !important; flex-wrap: wrap; }
       .stack-card { position: relative !important; top: auto !important; }
     }
+
+    /* skip link */
+    .skip-link {
+      position: absolute;
+      top: 0.75rem; left: 0.75rem;
+      z-index: 400;
+      background: var(--ink);
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transform: translateY(-160%);
+    }
+    .skip-link:focus { transform: none; }
+    main:focus { outline: none; }
 
     /* keyboard focus */
     a:focus-visible, button:focus-visible {
@@ -1150,8 +1179,10 @@
     #careerChart g:focus-visible rect:first-child { stroke: var(--blue); stroke-width: 3; }
   </style>
   <noscript><style>.reveal { opacity: 1; transform: none; filter: none; }</style></noscript>
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
 
@@ -1170,10 +1201,12 @@
       <li><a href="Lanre_Folarin_Resume.pdf" download>Resume</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
   </nav>
+
+  <main id="main" tabindex="-1">
 
   <!-- ════════ HERO ════════ -->
   <section id="hero">
@@ -1254,19 +1287,19 @@
       </div>
       <div class="dash-grid reveal">
         <div class="kpi">
-          <div class="kpi-num"><span class="count" data-target="14">0</span><span class="suffix">+</span></div>
+          <div class="kpi-num"><span class="count" data-target="14">14</span><span class="suffix">+</span></div>
           <div class="kpi-label">Years of professional experience in Canada, 9 in business analysis</div>
         </div>
         <div class="kpi">
-          <div class="kpi-num"><span class="count" data-target="7">0</span></div>
+          <div class="kpi-num"><span class="count" data-target="7">7</span></div>
           <div class="kpi-label">Industries, from FMCG to pharmaceutical services</div>
         </div>
         <div class="kpi">
-          <div class="kpi-num"><span class="count" data-target="24">0</span></div>
+          <div class="kpi-num"><span class="count" data-target="24">24</span></div>
           <div class="kpi-label">Dashboards shipped with zero critical defects</div>
         </div>
         <div class="kpi">
-          <div class="kpi-num"><span class="count" data-target="200">0</span><span class="suffix">+</span></div>
+          <div class="kpi-num"><span class="count" data-target="200">200</span><span class="suffix">+</span></div>
           <div class="kpi-label">Users prepared for adoption in one transformation</div>
         </div>
       </div>
@@ -1276,6 +1309,7 @@
           <span class="chart-note">interactive · click to trace</span>
         </div>
         <svg id="careerChart" viewBox="0 0 900 240" role="group" aria-label="Tenure by organization. Each bar is a link to that role."></svg>
+        <div class="chart-labels" id="chartLabels" aria-hidden="true"></div>
         <div class="chart-tip" id="chartTip"></div>
       </div>
     </div>
@@ -1742,10 +1776,11 @@
         </div>
         <a href="https://furthermaf.substack.com/" target="_blank" rel="noopener" class="writing-link-all">Read all posts ↗</a>
       </div>
+      <span id="newtab" class="visually-hidden">(Substack, opens in a new tab)</span>
       <div class="writing-grid">
-        <a class="article-card reveal" href="https://furthermaf.substack.com/p/when-your-users-cant-opt-out-designing" target="_blank" rel="noopener">
+        <a class="article-card reveal" aria-labelledby="art-1 newtab" href="https://furthermaf.substack.com/p/when-your-users-cant-opt-out-designing" target="_blank" rel="noopener">
           <div class="article-meta">Product Management</div>
-          <div class="article-title">When Your Users Can't Opt Out: Designing for Mandatory Workflows</div>
+          <div class="article-title" id="art-1">When Your Users Can't Opt Out: Designing for Mandatory Workflows</div>
           <p class="article-excerpt">
             What a government funding dashboard taught me about building for people who never asked
             for what you built. On metric design as policy, deriving structure that isn't in the data,
@@ -1753,45 +1788,45 @@
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card reveal" href="https://furthermaf.substack.com/p/you-should-do-something-really-really" target="_blank" rel="noopener">
+        <a class="article-card reveal" aria-labelledby="art-2 newtab" href="https://furthermaf.substack.com/p/you-should-do-something-really-really" target="_blank" rel="noopener">
           <div class="article-meta">Mindset</div>
-          <div class="article-title">You Should Do Something Really, Really Hard This Year</div>
+          <div class="article-title" id="art-2">You Should Do Something Really, Really Hard This Year</div>
           <p class="article-excerpt">
             Not "busy" hard. Not "my calendar is full" hard. Uncomfortable, ego-checking,
             why-did-I-sign-up-for-this hard. On the value of choosing difficulty with intention.
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card reveal" href="https://furthermaf.substack.com/p/how-i-helped-two-major-telcos-streamline" target="_blank" rel="noopener">
+        <a class="article-card reveal" aria-labelledby="art-3 newtab" href="https://furthermaf.substack.com/p/how-i-helped-two-major-telcos-streamline" target="_blank" rel="noopener">
           <div class="article-meta">Case Study</div>
-          <div class="article-title">How I Helped Two Major Telcos Streamline Copper Decommissioning</div>
+          <div class="article-title" id="art-3">How I Helped Two Major Telcos Streamline Copper Decommissioning</div>
           <p class="article-excerpt">
             For Bell and Telus, phasing out copper isn't just a technical upgrade. It's a massive,
             expensive, operationally complex project. Here's how I helped bring structure to it.
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card reveal" href="https://furthermaf.substack.com/p/what-bad-products-taught-me-about" target="_blank" rel="noopener">
+        <a class="article-card reveal" aria-labelledby="art-4 newtab" href="https://furthermaf.substack.com/p/what-bad-products-taught-me-about" target="_blank" rel="noopener">
           <div class="article-meta">Product Management</div>
-          <div class="article-title">What Bad Products Taught Me About Good Product Managers</div>
+          <div class="article-title" id="art-4">What Bad Products Taught Me About Good Product Managers</div>
           <p class="article-excerpt">
             We've all used bad products. Frustration eventually gives way to pattern recognition,
             and that pattern recognition becomes some of the most valuable learning for a PM.
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card reveal" href="https://furthermaf.substack.com/p/why-every-ba-should-treat-requirements" target="_blank" rel="noopener">
+        <a class="article-card reveal" aria-labelledby="art-5 newtab" href="https://furthermaf.substack.com/p/why-every-ba-should-treat-requirements" target="_blank" rel="noopener">
           <div class="article-meta">Business Analysis</div>
-          <div class="article-title">Why Every BA Should Treat Requirements Like a Product</div>
+          <div class="article-title" id="art-5">Why Every BA Should Treat Requirements Like a Product</div>
           <p class="article-excerpt">
             Too many BAs treat requirements like paperwork. The best ones treat them like a product,
             something to be shaped, validated, and aligned with real user value.
           </p>
           <span class="article-cta">Read on Substack</span>
         </a>
-        <a class="article-card reveal" href="https://furthermaf.substack.com/p/how-spotify-could-turn-free-listeners" target="_blank" rel="noopener">
+        <a class="article-card reveal" aria-labelledby="art-6 newtab" href="https://furthermaf.substack.com/p/how-spotify-could-turn-free-listeners" target="_blank" rel="noopener">
           <div class="article-meta">Product Strategy</div>
-          <div class="article-title">How Spotify Could Turn Free Listeners Into Paid Loyalists</div>
+          <div class="article-title" id="art-6">How Spotify Could Turn Free Listeners Into Paid Loyalists</div>
           <p class="article-excerpt">
             Spotify has 600 million users. Nearly 60% don't pay a dime, not because they can't,
             but because Spotify hasn't given them a real reason to care. Here's how they could fix that.
@@ -1836,6 +1871,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ════════ FOOTER ════════ -->
   <footer>
     <div class="footer-left">Lanre Folarin</div>
@@ -1855,17 +1892,27 @@
     /* ── Mobile nav ── */
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
+    const setMenu = (open) => {
+      navLinks.classList.toggle('open', open);
       hamburger.classList.toggle('open', open);
       hamburger.setAttribute('aria-expanded', open);
+    };
+    hamburger.addEventListener('click', () => {
+      const open = !navLinks.classList.contains('open');
+      setMenu(open);
+      if (open) navLinks.querySelector('a').focus();
     });
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      });
+      link.addEventListener('click', () => setMenu(false));
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        setMenu(false);
+        hamburger.focus();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('open') && !topNav.contains(e.target)) setMenu(false);
     });
 
     /* ── Scroll reveal ── */
@@ -1988,13 +2035,16 @@
       { org: 'Schneider', role: 'Business Architect', start: '2025-05', end: '2025-11', target: 'exp-se' },
       { org: 'Min. of Health', role: 'Senior Business Analyst', start: '2025-12', end: '2026-06', target: 'exp-moh' },
       { org: 'UBC', role: 'Senior Business Analyst', start: '2026-06', end: null, target: 'exp-ubc', current: true }
-    ].map(d => ({ ...d, years: Math.round(monthsBetween(d.start, d.end) / 12 * 10) / 10 }));
+    ].map((d, i, all) => {
+      const handover = all[i + 1] && all[i + 1].start === d.end ? 1 : 0;
+      return { ...d, years: Math.round((monthsBetween(d.start, d.end) - handover) / 12 * 10) / 10 };
+    });
 
     const chart = document.getElementById('careerChart');
     const tip = document.getElementById('chartTip');
 
     if (chart) {
-      const W = 900, H = 240, padL = 16, padR = 16, padB = 34, padT = 14;
+      const W = 900, H = 240, padL = 16, padR = 16, padB = 6, padT = 14;
       const maxY = 2.5;
       const innerW = W - padL - padR;
       const innerH = H - padT - padB;
@@ -2002,6 +2052,10 @@
       const slot = innerW / n;
       const barW = Math.min(58, slot * 0.5);
       const svgNS = 'http://www.w3.org/2000/svg';
+      const labels = document.getElementById('chartLabels');
+      labels.style.gridTemplateColumns = 'repeat(' + n + ', 1fr)';
+      labels.style.paddingLeft = (padL / W * 100) + '%';
+      labels.style.paddingRight = (padR / W * 100) + '%';
 
       [0.5, 1, 1.5, 2, 2.5].forEach(v => {
         const y = padT + innerH - (v / maxY) * innerH;
@@ -2030,8 +2084,8 @@
         rect.setAttribute('x', x); rect.setAttribute('width', barW);
         rect.setAttribute('rx', 6);
         rect.setAttribute('y', padT + innerH); rect.setAttribute('height', 0);
-        rect.setAttribute('fill', d.current ? '#E8961E' : '#2233D9');
-        rect.setAttribute('fill-opacity', d.current ? '0.95' : '0.72');
+        rect.setAttribute('fill', d.current ? '#C77A0E' : '#2233D9');
+        rect.setAttribute('fill-opacity', d.current ? '1' : '0.72');
         rect.style.transition = 'y 0.9s cubic-bezier(0.22,1,0.36,1), height 0.9s cubic-bezier(0.22,1,0.36,1), fill-opacity 0.2s';
         g.appendChild(rect);
 
@@ -2041,29 +2095,34 @@
         hit.setAttribute('fill', 'transparent');
         g.appendChild(hit);
 
-        const lbl = document.createElementNS(svgNS, 'text');
-        lbl.setAttribute('x', cx); lbl.setAttribute('y', H - 12);
-        lbl.setAttribute('text-anchor', 'middle');
-        lbl.setAttribute('fill', '#737A87');
-        lbl.setAttribute('font-size', '11');
-        lbl.setAttribute('font-family', "'IBM Plex Mono', monospace");
+        const lbl = document.createElement('span');
         lbl.textContent = d.org;
-        g.appendChild(lbl);
+        labels.appendChild(lbl);
 
-        g.addEventListener('pointerenter', () => {
+        const showTip = () => {
           rect.setAttribute('fill-opacity', '1');
           tip.innerHTML = '<span class="tip-org">' + d.org + '</span>' + d.role + ' · ' + d.years.toFixed(1) + ' yrs' + (d.current ? ' (ongoing)' : '');
           tip.style.opacity = '1';
+        };
+        const hideTip = () => {
+          rect.setAttribute('fill-opacity', d.current ? '1' : '0.72');
+          tip.style.opacity = '0';
+        };
+        g.addEventListener('pointerenter', showTip);
+        g.addEventListener('focus', () => {
+          showTip();
+          const wr = chart.closest('.chart-wrap').getBoundingClientRect();
+          const br = rect.getBoundingClientRect();
+          tip.style.left = (br.left + br.width / 2 - wr.left) + 'px';
+          tip.style.top = (br.top - wr.top) + 'px';
         });
+        g.addEventListener('blur', hideTip);
         g.addEventListener('pointermove', (e) => {
           const wr = chart.closest('.chart-wrap').getBoundingClientRect();
           tip.style.left = (e.clientX - wr.left) + 'px';
           tip.style.top = (e.clientY - wr.top) + 'px';
         });
-        g.addEventListener('pointerleave', () => {
-          rect.setAttribute('fill-opacity', d.current ? '0.95' : '0.72');
-          tip.style.opacity = '0';
-        });
+        g.addEventListener('pointerleave', hideTip);
         g.addEventListener('click', () => {
           const t = document.getElementById(d.target);
           if (!t) return;
